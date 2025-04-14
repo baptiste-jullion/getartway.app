@@ -1,0 +1,179 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  extensions        = [postgis]
+}
+
+model User {
+  id           String                                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email        String                                @unique @db.VarChar(255)
+  firstName    String?                               @db.VarChar(255)
+  password     String                                @db.VarChar(255)
+  registeredAt DateTime                              @default(now()) @db.Timestamp()
+  avatar       String?
+  role         String?                               @db.VarChar(255)
+  location     Unsupported("geometry(Point, 4326)")?
+
+  reviewedExhibitions Review[]
+  favoriteExhibitions Favorite[]
+  categories          UserCategory[]
+
+  createdAt DateTime @default(now()) @db.Timestamp()
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
+
+  @@index([location], name: "locationIndexUser", type: Gist)
+}
+
+model Exhibition {
+  id          String                               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String                               @db.VarChar(255)
+  description String                               @db.Text
+  startDate   DateTime                             @db.Timestamp()
+  endDate     DateTime                             @db.Timestamp()
+  cover       String
+  price       Float
+  location    Unsupported("geometry(Point, 4326)")
+  isReviewed  Boolean                              @default(false)
+  website     String                               @db.Text
+
+  reviewedBy  Review[]
+  favoritedBy Favorite[]
+  category    Category           @relation(fields: [categoryId], references: [id])
+  categoryId  String             @db.Uuid
+  artists     ArtistExhibition[]
+  news        NewsExhibition[]
+
+  createdAt DateTime @default(now()) @db.Timestamp()
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
+
+  @@index([location], name: "locationIndexExhibition", type: Gist)
+}
+
+model Artist {
+  id    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  image String
+  name  String
+
+  categories  ArtistCategory[]
+  exhibitions ArtistExhibition[]
+  news        NewsArtist[]
+
+  createdAt DateTime @default(now()) @db.Timestamp()
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
+}
+
+model Category {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  label       String
+  highlighted Boolean @default(false)
+  description String  @db.Text
+
+  exhibitions Exhibition[]
+  artists     ArtistCategory[]
+  users       UserCategory[]
+  news        News[]
+
+  createdAt DateTime @default(now()) @db.Timestamp()
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
+}
+
+model News {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title           String
+  content         String   @db.Text
+  publicationDate DateTime @db.Date
+  cover           String
+
+  exhibitions NewsExhibition[]
+  artists     NewsArtist[]
+  media       Media[]
+  category    Category         @relation(fields: [categoryId], references: [id])
+  categoryId  String           @db.Uuid
+
+  createdAt DateTime @default(now()) @db.Timestamp()
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
+}
+
+model Media {
+  id   String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name String
+
+  news   News   @relation(fields: [newsId], references: [id])
+  newsId String @db.Uuid
+
+  createdAt DateTime @default(now()) @db.Timestamp()
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
+}
+
+// Relations
+
+model Review {
+  user         User       @relation(fields: [userId], references: [id])
+  userId       String     @db.Uuid
+  exhibition   Exhibition @relation(fields: [exhibitionId], references: [id])
+  exhibitionId String     @db.Uuid
+  criterias    Json
+
+  @@id([userId, exhibitionId])
+}
+
+model Favorite {
+  user         User       @relation(fields: [userId], references: [id])
+  userId       String     @db.Uuid
+  exhibition   Exhibition @relation(fields: [exhibitionId], references: [id])
+  exhibitionId String     @db.Uuid
+
+  @@id([userId, exhibitionId])
+}
+
+model UserCategory {
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String   @db.Uuid
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String   @db.Uuid
+
+  @@id([userId, categoryId])
+}
+
+model ArtistCategory {
+  artist     Artist   @relation(fields: [artistId], references: [id])
+  artistId   String   @db.Uuid
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String   @db.Uuid
+
+  @@id([artistId, categoryId])
+}
+
+model ArtistExhibition {
+  artist       Artist     @relation(fields: [artistId], references: [id])
+  artistId     String     @db.Uuid
+  exhibition   Exhibition @relation(fields: [exhibitionId], references: [id])
+  exhibitionId String     @db.Uuid
+
+  @@id([artistId, exhibitionId])
+}
+
+model NewsExhibition {
+  news         News       @relation(fields: [newsId], references: [id])
+  newsId       String     @db.Uuid
+  exhibition   Exhibition @relation(fields: [exhibitionId], references: [id])
+  exhibitionId String     @db.Uuid
+
+  @@id([newsId, exhibitionId])
+}
+
+model NewsArtist {
+  news     News   @relation(fields: [newsId], references: [id])
+  newsId   String @db.Uuid
+  artist   Artist @relation(fields: [artistId], references: [id])
+  artistId String @db.Uuid
+
+  @@id([newsId, artistId])
+}

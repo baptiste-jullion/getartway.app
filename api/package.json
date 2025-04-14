@@ -1,0 +1,21 @@
+{
+  "name": "api",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile server ./src/index.ts && ./server"
+  },
+  "dependencies": {
+    "@elysiajs/swagger": "^1.2.2",
+    "@prisma/client": "^6.6.0",
+    "elysia": "latest",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.11",
+    "bun-types": "latest",
+    "prisma": "^6.6.0"
+  },
+  "module": "src/index.js"
+}
