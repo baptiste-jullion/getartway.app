@@ -46,11 +46,11 @@
       "#dtos/*": [
         "src/dtos/*"
       ],
-      "#routes/*": [
-        "src/routes/*"
-      ],
       "#models": [
         "generated/prisma"
+      ],
+      "#database": [
+        "src/database/index"
       ],
       "#index": [
         "src/index"

@@ -1,4 +1,5 @@
 import swagger from "@elysiajs/swagger";
+import { UserController } from "#controllers/user.controller";
 import { Elysia } from "elysia";
 
 const app = new Elysia()
@@ -8,7 +9,7 @@ const app = new Elysia()
             hide: true,
         },
     })
-    // fallback to /docs
+    .group("/api", (app) => app.use(UserController))
     .listen(Bun.env.API_PORT);
 
 console.log(
