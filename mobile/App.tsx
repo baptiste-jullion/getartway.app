@@ -1,6 +1,9 @@
+import ARAGeoJson from "./assets/geojson/ara.json";
 import MapboxGL from "@rnmapbox/maps";
+import LayersFilled from "~/components/icons/LayersFilled";
+import NorthFilled from "~/components/icons/NorthFilled";
 import { useRef, useState } from "react";
-import { Button, Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const MAPBOX_PUBLIC_TOKEN =
     "pk.eyJ1IjoiYXJ0d2F5IiwiYSI6ImNtOWZ1c2hzcDF2MW4ybnM0MGZ0NzNhNjcifQ.zwBRMxwfbQMt3oAXgKyEnw";
@@ -11,6 +14,17 @@ export default function App() {
     const markerCoordinate = [6.11667, 45.900002];
 
     const cameraRef = useRef<MapboxGL.Camera>(null);
+    const mapRef = useRef<MapboxGL.MapView>(null);
+
+    const [cameraInfo, setCameraInfo] = useState<
+        MapboxGL.MapState["properties"] | null
+    >(null);
+
+    const handleCameraChange = (state: MapboxGL.MapState) => {
+        const { properties } = state;
+
+        setCameraInfo(properties);
+    };
 
     const layers = [
         MapboxGL.StyleURL.SatelliteStreet,
@@ -18,16 +32,27 @@ export default function App() {
         MapboxGL.StyleURL.TrafficNight,
     ];
 
+    const [mapLoaded, setMapLoaded] = useState(false);
+
     const [layer, setLayer] = useState(layers[0]);
+
+    const cycleMapStyle = () => {
+        const currentIndex = layers.indexOf(layer);
+        const nextIndex = (currentIndex + 1) % layers.length;
+        setLayer(layers[nextIndex]);
+    };
 
     return (
         <View style={styles.page}>
             <MapboxGL.MapView
+                ref={mapRef}
                 style={styles.map}
                 styleURL={layer} // Use a standard style
-                onDidFinishLoadingMap={() =>
-                    console.log("Map finished loading.")
-                }
+                onDidFinishLoadingMap={() => {
+                    console.log("Map finished loading.");
+                    setMapLoaded(true);
+                }}
+                onCameraChanged={(state) => handleCameraChange(state)}
                 onMapLoadingError={() => console.error("Map failed loading:")} // Added fallback for error message
             >
                 {MapboxGL.Camera && (
@@ -36,20 +61,45 @@ export default function App() {
                         centerCoordinate={markerCoordinate}
                         minZoomLevel={8}
                         maxZoomLevel={16}
+                        maxBounds={{
+                            ne: [7.18556 + 0.25, 46.80417 + 0.25],
+                            sw: [2.06278 - 0.25, 44.11556 - 0.25],
+                        }}
                     />
                 )}
-                {MapboxGL.PointAnnotation && (
+                {MapboxGL.ShapeSource && (
+                    <MapboxGL.ShapeSource
+                        id="region"
+                        shape={ARAGeoJson as GeoJSON.Feature}
+                    >
+                        <MapboxGL.LineLayer
+                            id="region-outline"
+                            style={{
+                                lineColor: "#007AFF",
+                                lineWidth: 8,
+                                lineOpacity: 0.8,
+                            }}
+                        />
+                    </MapboxGL.ShapeSource>
+                )}
+                {mapLoaded && MapboxGL.PointAnnotation && (
                     <MapboxGL.PointAnnotation
                         id="nycMarker"
                         coordinate={markerCoordinate}
                     >
-                        <Image
-                            source={{
-                                uri: "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg",
+                        <View
+                            style={{
+                                alignItems: "center",
+                                justifyContent: "center",
                             }}
-                            style={styles.imageMarker}
-                            fadeDuration={0}
-                        />
+                        >
+                            <Image
+                                source={{
+                                    uri: "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg",
+                                }}
+                                style={styles.imageMarker}
+                            />
+                        </View>
 
                         <MapboxGL.Callout title="Hello from NYC!" />
                     </MapboxGL.PointAnnotation>
@@ -57,15 +107,26 @@ export default function App() {
             </MapboxGL.MapView>
 
             <View style={styles.actions}>
-                <Button
-                    title={"north"}
+                <TouchableOpacity
                     onPress={() => cameraRef.current?.setCamera({ heading: 0 })}
-                />
-            </View>
-            <View style={styles.overlay}>
-                <Button title={"1"} onPress={() => setLayer(layers[0])} />
-                <Button title={"2"} onPress={() => setLayer(layers[1])} />
-                <Button title={"3"} onPress={() => setLayer(layers[2])} />
+                    style={styles.button}
+                >
+                    <NorthFilled
+                        style={{
+                            transform: [
+                                {
+                                    rotateZ: `${cameraInfo?.heading || 0}deg`,
+                                },
+                            ],
+                        }}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => cycleMapStyle()}
+                    style={styles.button}
+                >
+                    <LayersFilled style={{}} />
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -102,8 +163,9 @@ const styles = StyleSheet.create({
     },
     imageMarker: {
         width: 150, // Set desired width
-        height: 150, // Set desired height
-        resizeMode: "contain", // Adjust how the image fits
+        aspectRatio: 16 / 9,
+        borderRadius: 10,
+        resizeMode: "cover",
     },
     overlay: {
         position: "absolute",
@@ -113,9 +175,17 @@ const styles = StyleSheet.create({
     actions: {
         position: "absolute",
         bottom: 10,
-        left: 10,
+        right: 10,
         flexDirection: "column",
         padding: 6,
         gap: 12,
+    },
+    button: {
+        backgroundColor: "white",
+        padding: 12,
+        borderRadius: 50,
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
     },
 });
