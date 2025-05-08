@@ -1,8 +1,15 @@
 {
   "name": "getartway.app",
   "module": "index.ts",
-  "type": "module",
   "private": true,
+  "type": "module",
+  "workspaces": [
+    "api",
+    "mobile"
+  ],
+  "scripts": {
+    "setup": "bun install --clean && cd ./api && bun run prisma:generate && bun run prepare"
+  },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
     "@stylistic/eslint-plugin-ts": "^4.2.0",
@@ -18,5 +25,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "elysia": "^1.2.25"
   }
 }

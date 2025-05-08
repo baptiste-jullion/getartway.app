@@ -1,9 +1,13 @@
 import ARAGeoJson from "./assets/geojson/ara.json";
+import { treaty } from "@elysiajs/eden";
+import type { App } from "@getartway/api";
 import MapboxGL from "@rnmapbox/maps";
 import LayersFilled from "~/components/icons/LayersFilled";
 import NorthFilled from "~/components/icons/NorthFilled";
 import { useRef, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+
+const client = treaty<App>("http://192.168.1.96:15336");
 
 const MAPBOX_PUBLIC_TOKEN =
     "pk.eyJ1IjoiYXJ0d2F5IiwiYSI6ImNtOWZ1c2hzcDF2MW4ybnM0MGZ0NzNhNjcifQ.zwBRMxwfbQMt3oAXgKyEnw";
@@ -24,6 +28,20 @@ export default function App() {
         const { properties } = state;
 
         setCameraInfo(properties);
+    };
+
+    const [exhibition, setExhibition] = useState<any>(null);
+
+    const testApi = async () => {
+        console.log("test");
+        try {
+            const { data } = await client.api.exhibitions.index.get();
+            if (!data) return;
+            setExhibition(data[0]);
+            console.log(data);
+        } catch (error) {
+            console.error("Error fetching data from API:", error);
+        }
     };
 
     const layers = [
@@ -82,10 +100,10 @@ export default function App() {
                         />
                     </MapboxGL.ShapeSource>
                 )}
-                {mapLoaded && MapboxGL.PointAnnotation && (
+                {mapLoaded && exhibition && MapboxGL.PointAnnotation && (
                     <MapboxGL.PointAnnotation
-                        id="nycMarker"
-                        coordinate={markerCoordinate}
+                        id={exhibition.id}
+                        coordinate={exhibition.location}
                     >
                         <View
                             style={{
@@ -95,13 +113,19 @@ export default function App() {
                         >
                             <Image
                                 source={{
-                                    uri: "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg",
+                                    uri:
+                                        "http://192.168.1.96:15336/api/medias/" +
+                                        exhibition.cover,
                                 }}
                                 style={styles.imageMarker}
+                                onError={(e) =>
+                                    console.error(
+                                        "Error loading image:",
+                                        e.nativeEvent.error,
+                                    )
+                                }
                             />
                         </View>
-
-                        <MapboxGL.Callout title="Hello from NYC!" />
                     </MapboxGL.PointAnnotation>
                 )}
             </MapboxGL.MapView>
@@ -127,6 +151,10 @@ export default function App() {
                 >
                     <LayersFilled style={{}} />
                 </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => testApi()}
+                    style={styles.button}
+                ></TouchableOpacity>
             </View>
         </View>
     );
@@ -162,10 +190,13 @@ const styles = StyleSheet.create({
         transform: [{ scale: 0.8 }],
     },
     imageMarker: {
-        width: 150, // Set desired width
+        width: 60, // Set desired width
         aspectRatio: 16 / 9,
         borderRadius: 10,
         resizeMode: "cover",
+        borderColor: "red",
+        borderWidth: 2,
+        borderStyle: "solid",
     },
     overlay: {
         position: "absolute",

@@ -1,21 +1,31 @@
 {
-  "name": "api",
+  "name": "@getartway/api",
   "version": "1.0.50",
+  "module": "src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts",
-    "start": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile server ./src/index.ts && ./server"
+    "dev": "bun run --watch --env-file=../.env src/index.ts",
+    "start": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile server ./src/index.ts && export $(cat ../.env | xargs)  && ./server",
+    "prepare": "tsc --project tsconfig.build.json && tsc-alias --project tsconfig.build.json",
+    "prisma:generate": "bun run prisma generate"
+  },
+  "prisma": {
+    "seed": "bun --env-file=../.env prisma/seed.ts"
   },
   "dependencies": {
     "@elysiajs/swagger": "^1.2.2",
+    "@faker-js/faker": "^9.7.0",
     "@prisma/client": "^6.6.0",
-    "elysia": "latest",
+    "@types/js-yaml": "^4.0.9",
+    "js-yaml": "^4.1.0",
     "pg": "^8.14.1"
   },
   "devDependencies": {
     "@types/pg": "^8.11.11",
     "bun-types": "latest",
-    "prisma": "^6.6.0"
-  },
-  "module": "src/index.js"
+    "prisma": "^6.6.0",
+    "tsc-alias": "^1.8.15"
+  }
 }

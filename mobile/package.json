@@ -1,5 +1,5 @@
 {
-  "name": "mobile",
+  "name": "@getartway/mobile",
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@getartway/api": "*",
+    "@elysiajs/eden": "^1.2.0",
     "@expo/metro-runtime": "~4.0.1",
     "@rnmapbox/maps": "^10.1.38",
     "expo": "~52.0.46",

@@ -32,16 +32,16 @@ model User {
 }
 
 model Exhibition {
-  id          String                               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title       String                               @db.VarChar(255)
-  description String                               @db.Text
-  startDate   DateTime                             @db.Timestamp()
-  endDate     DateTime                             @db.Timestamp()
+  id          String                                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String                                @db.VarChar(255)
+  description String                                @db.Text
+  startDate   DateTime                              @db.Timestamp()
+  endDate     DateTime                              @db.Timestamp()
   cover       String
   price       Float
-  location    Unsupported("geometry(Point, 4326)")
-  isReviewed  Boolean                              @default(false)
-  website     String                               @db.Text
+  location    Unsupported("geometry(Point, 4326)")?
+  isReviewed  Boolean                               @default(false)
+  website     String                                @db.Text
 
   reviewedBy  Review[]
   favoritedBy Favorite[]
