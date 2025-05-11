@@ -2,8 +2,8 @@ import ARAGeoJson from "./assets/geojson/ara.json";
 import { treaty } from "@elysiajs/eden";
 import type { App } from "@getartway/api";
 import MapboxGL from "@rnmapbox/maps";
-import LayersFilled from "~/components/icons/LayersFilled";
-import NorthFilled from "~/components/icons/NorthFilled";
+import LayersFilled from "~/components/Icons/LayersFilled";
+import NorthFilled from "~/components/Icons/NorthFilled";
 import { useRef, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
