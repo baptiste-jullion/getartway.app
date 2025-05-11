@@ -14,8 +14,10 @@ const ExhibitionDTO = t.Intersect([
         }),
         cover: t.String(),
         price: t.Number(),
-        location: t.Array(t.Number({ format: "float" }), {
-            examples: [[6.11667, 45.900002]],
+        location: t.Object({
+            id: t.String({ format: "uuid" }),
+            lat: t.Number({ format: "float", examples: [45.900002] }),
+            lng: t.Number({ format: "float", examples: [6.1252859] }),
         }),
         isReviewed: t.Boolean({ default: false }),
         website: t.String(),
