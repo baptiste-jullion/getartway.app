@@ -1,3 +1,8 @@
+locations:
+  - id: "ec621edd-3549-4bfe-bd24-a2fdcda725a5"
+    lat: 45.8976807
+    lng: 6.1252859
+
 artists:
   - id: "fd55bfc2-956e-480c-8001-74dc1f404ed3"
     name: "Joël Gangloff"
@@ -12,14 +17,14 @@ exhibitions:
   - id: "9e5885a6-f9a4-454f-9f6d-70e6f7eb6df0"
     title: "Les lacustres"
     description: ""
-    startDate: "2024-10-01"
-    endDate: "2025-09-30"
+    startDate: "2024-10-01T00:00:00.000Z"
+    endDate: "2025-09-30T00:00:00.000Z"
     cover: "775d562e-6e4e-42c3-9fde-b67eb5e1d577"
     price: 6.5
-    location: [6.1252859, 45.8976807]
     isReviewed: true
     website: "https://www.lac-annecy.com/fete-et-manifestation/les-lacustres-joel-gangloff-annecy/"
     categoryId: "cc6b529e-5cdb-48e5-936f-fa0c20fda95e"
+    locationId: "ec621edd-3549-4bfe-bd24-a2fdcda725a5"
 
 artist_categories:
   - artistId: "fd55bfc2-956e-480c-8001-74dc1f404ed3"
