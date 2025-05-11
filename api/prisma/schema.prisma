@@ -12,14 +12,15 @@ datasource db {
 }
 
 model User {
-  id           String                                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  email        String                                @unique @db.VarChar(255)
-  firstName    String?                               @db.VarChar(255)
-  password     String                                @db.VarChar(255)
-  registeredAt DateTime                              @default(now()) @db.Timestamp()
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email        String   @unique @db.VarChar(255)
+  firstName    String?  @db.VarChar(255)
+  password     String   @db.VarChar(255)
+  registeredAt DateTime @default(now()) @db.Timestamp()
   avatar       String?
-  role         String?                               @db.VarChar(255)
-  location     Unsupported("geometry(Point, 4326)")?
+  role         String?  @db.VarChar(255)
+  location     Location @relation("UserLocation", fields: [locationId], references: [id])
+  locationId   String   @unique @db.Uuid
 
   reviewedExhibitions Review[]
   favoriteExhibitions Favorite[]
@@ -27,21 +28,20 @@ model User {
 
   createdAt DateTime @default(now()) @db.Timestamp()
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
-
-  @@index([location], name: "locationIndexUser", type: Gist)
 }
 
 model Exhibition {
-  id          String                                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title       String                                @db.VarChar(255)
-  description String                                @db.Text
-  startDate   DateTime                              @db.Timestamp()
-  endDate     DateTime                              @db.Timestamp()
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  startDate   DateTime @db.Timestamp()
+  endDate     DateTime @db.Timestamp()
   cover       String
   price       Float
-  location    Unsupported("geometry(Point, 4326)")?
-  isReviewed  Boolean                               @default(false)
-  website     String                                @db.Text
+  isReviewed  Boolean  @default(false)
+  website     String   @db.Text
+  location    Location @relation("ExhibitionLocation", fields: [locationId], references: [id])
+  locationId  String   @unique @db.Uuid
 
   reviewedBy  Review[]
   favoritedBy Favorite[]
@@ -52,8 +52,18 @@ model Exhibition {
 
   createdAt DateTime @default(now()) @db.Timestamp()
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
+}
 
-  @@index([location], name: "locationIndexExhibition", type: Gist)
+model Location {
+  id   String                                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lat  Float
+  lng  Float
+  geom Unsupported("geometry(Point, 4326)")?
+
+  user       User?       @relation("UserLocation")
+  exhibition Exhibition? @relation("ExhibitionLocation")
+
+  @@index([geom], name: "location_geom_index", type: Gist)
 }
 
 model Artist {

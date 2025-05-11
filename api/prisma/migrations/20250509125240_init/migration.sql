@@ -5,12 +5,12 @@ CREATE EXTENSION IF NOT EXISTS "postgis";
 CREATE TABLE "User" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "email" VARCHAR(255) NOT NULL,
-    "firstName" VARCHAR(255) NOT NULL,
+    "firstName" VARCHAR(255),
     "password" VARCHAR(255) NOT NULL,
     "registeredAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "avatar" TEXT NOT NULL,
-    "role" VARCHAR(255) NOT NULL,
-    "location" geometry(Point, 4326) NOT NULL,
+    "avatar" TEXT,
+    "role" VARCHAR(255),
+    "locationId" UUID NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -26,14 +26,24 @@ CREATE TABLE "Exhibition" (
     "endDate" TIMESTAMP NOT NULL,
     "cover" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
-    "location" geometry(Point, 4326) NOT NULL,
     "isReviewed" BOOLEAN NOT NULL DEFAULT false,
     "website" TEXT NOT NULL,
+    "locationId" UUID NOT NULL,
     "categoryId" UUID NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Exhibition_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Location" (
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "lat" DOUBLE PRECISION NOT NULL,
+    "lng" DOUBLE PRECISION NOT NULL,
+    "geom" geometry(Point, 4326),
+
+    CONSTRAINT "Location_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -145,10 +155,19 @@ CREATE TABLE "NewsArtist" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE INDEX "locationIndexUser" ON "User" USING GIST ("location");
+CREATE UNIQUE INDEX "User_locationId_key" ON "User"("locationId");
 
 -- CreateIndex
-CREATE INDEX "locationIndexExhibition" ON "Exhibition" USING GIST ("location");
+CREATE UNIQUE INDEX "Exhibition_locationId_key" ON "Exhibition"("locationId");
+
+-- CreateIndex
+CREATE INDEX "location_geom_index" ON "Location" USING GIST ("geom");
+
+-- AddForeignKey
+ALTER TABLE "User" ADD CONSTRAINT "User_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Exhibition" ADD CONSTRAINT "Exhibition_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Exhibition" ADD CONSTRAINT "Exhibition_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -200,3 +219,17 @@ ALTER TABLE "NewsArtist" ADD CONSTRAINT "NewsArtist_newsId_fkey" FOREIGN KEY ("n
 
 -- AddForeignKey
 ALTER TABLE "NewsArtist" ADD CONSTRAINT "NewsArtist_artistId_fkey" FOREIGN KEY ("artistId") REFERENCES "Artist"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddTrigger
+CREATE OR REPLACE FUNCTION set_location_geom()
+RETURNS trigger AS $$
+BEGIN
+  NEW.geom := ST_SetSRID(ST_MakePoint(NEW.lng, NEW.lat), 4326);
+RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_set_location_geom
+    BEFORE INSERT OR UPDATE ON "Location"
+                         FOR EACH ROW
+                         EXECUTE FUNCTION set_location_geom();
