@@ -3,8 +3,24 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "~/components/*": ["./src/components/*"],
-        "~/assets/*": ["./assets/*"],
+      "~/components/*": [
+        "./src/components/*"
+      ],
+      "~/assets/*": [
+        "./assets/*"
+      ],
+      "~/hooks/*": [
+        "./src/hooks/*"
+      ],
+      "~/screens/*": [
+          "./src/screens/*"
+      ],
+      "~/contexts/*": [
+          "./src/contexts/*"
+      ],
+      "~/utils/*": [
+          "./src/utils/*"
+      ],
     }
   }
 }
