@@ -3,19 +3,15 @@ import MarkerFilled from "~/components/Icons/MarkerFilled";
 import NorthFilled from "~/components/Icons/NorthFilled";
 import { useMapContext } from "~/contexts/MapContext";
 import { usePermissionsContext } from "~/contexts/PermissionsContext";
-import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
-interface MapControlsProps {
-    onMapLayerChange: () => void;
-}
+export const MapControls = () => {
+    const { cameraInfo, userLocation, setCamera, Layers, setLayerURL } =
+        useMapContext();
+    const { hasLocationPermission } = usePermissionsContext();
 
-export const MapControls: React.FC<MapControlsProps> = ({
-    onMapLayerChange,
-}) => {
-    const { cameraInfo, userLocation, setCamera } = useMapContext();
-    const { requestLocationPermission, hasLocationPermission } =
-        usePermissionsContext();
+    const [layerVisible, setLayerVisible] = useState(false);
 
     const onRotateNorth = () =>
         setCamera({
@@ -35,18 +31,36 @@ export const MapControls: React.FC<MapControlsProps> = ({
                     }}
                 />
             </TouchableOpacity>
-            <TouchableOpacity
-                onPress={() => onMapLayerChange()}
-                style={styles.button}
-            >
-                <LayersFilled style={{}} />
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={async () => {
-                    if (!hasLocationPermission)
-                        await requestLocationPermission();
-
-                    if (userLocation) {
+            <View style={styles.layers}>
+                <TouchableOpacity
+                    onPress={() => setLayerVisible(!layerVisible)}
+                    style={styles.button}
+                >
+                    <LayersFilled />
+                </TouchableOpacity>
+                {layerVisible && (
+                    <View style={styles.layersRow}>
+                        {Object.entries(Layers).map(([key, value]) => (
+                            <TouchableOpacity
+                                key={key}
+                                onPress={() => {
+                                    setLayerURL(value.url);
+                                    setLayerVisible(false);
+                                }}
+                                style={styles.buttonImage}
+                            >
+                                <Image
+                                    style={styles.image}
+                                    source={value.preview}
+                                />
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                )}
+            </View>
+            {hasLocationPermission && userLocation && (
+                <TouchableOpacity
+                    onPress={async () => {
                         setCamera({
                             centerCoordinate: [
                                 userLocation.coords.longitude,
@@ -55,22 +69,17 @@ export const MapControls: React.FC<MapControlsProps> = ({
                             zoomLevel: 16,
                             animationDuration: 2000,
                         });
-                    }
-                }}
-                style={styles.button}
-            >
-                <MarkerFilled />
-            </TouchableOpacity>
+                    }}
+                    style={styles.button}
+                >
+                    <MarkerFilled />
+                </TouchableOpacity>
+            )}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    overlay: {
-        position: "absolute",
-        left: 10,
-        top: 10,
-    },
     actions: {
         position: "absolute",
         bottom: 10,
@@ -78,13 +87,35 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         padding: 6,
         gap: 12,
+        alignItems: "flex-end",
     },
     button: {
         backgroundColor: "white",
-        padding: 12,
+        width: 48,
+        height: 48,
         borderRadius: 50,
-        flex: 1,
         alignItems: "center",
         justifyContent: "center",
+    },
+    layers: {
+        flexDirection: "row-reverse",
+        gap: 12,
+    },
+    layersRow: {
+        flex: 1,
+        flexDirection: "row-reverse",
+        gap: 12,
+    },
+    image: {
+        height: 48,
+        aspectRatio: 1,
+    },
+    buttonImage: {
+        borderColor: "white",
+        borderWidth: 2,
+        width: 48,
+        height: 48,
+        borderRadius: 16,
+        overflow: "hidden",
     },
 });
