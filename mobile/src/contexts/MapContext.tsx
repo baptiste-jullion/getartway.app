@@ -24,7 +24,30 @@ interface MapContextType {
     setUserLocation: Dispatch<SetStateAction<MapContextType["userLocation"]>>;
 
     setCamera: Camera["setCamera"];
+
+    layerURL: string;
+    setLayerURL: Dispatch<SetStateAction<MapContextType["layerURL"]>>;
+
+    Layers: typeof Layers;
 }
+
+const Layers = {
+    Satellite: {
+        url: "mapbox://styles/mapbox/satellite-streets-v12",
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        preview: require("~/assets/map-layers/satellite.png"),
+    },
+    Street: {
+        url: "mapbox://styles/mapbox/streets-v12",
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        preview: require("~/assets/map-layers/street.png"),
+    },
+    Night: {
+        url: "mapbox://styles/mapbox/navigation-preview-night-v4",
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        preview: require("~/assets/map-layers/night.png"),
+    },
+} as const;
 
 const MapContext = createContext<MapContextType | null>(null);
 
@@ -40,6 +63,10 @@ export const MapProvider = ({ children }: { children: ReactNode }) => {
 
     const [userLocation, setUserLocation] =
         useState<MapContextType["userLocation"]>(null);
+
+    const [layerURL, setLayerURL] = useState<MapContextType["layerURL"]>(
+        Layers.Satellite.url,
+    );
 
     const setCamera: Camera["setCamera"] = (camera) => {
         if (cameraRef.current) cameraRef.current.setCamera(camera);
@@ -57,6 +84,9 @@ export const MapProvider = ({ children }: { children: ReactNode }) => {
                 userLocation,
                 setUserLocation,
                 setCamera,
+                layerURL,
+                setLayerURL,
+                Layers,
             }}
         >
             {children}
