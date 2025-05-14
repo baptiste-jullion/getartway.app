@@ -1,7 +1,9 @@
 import { treaty } from "@elysiajs/eden";
 import type { App } from "@getartway/api";
+import { TExhibitionList } from "@getartway/api/src/dtos/exhibition.dto";
 import MapboxGL from "@rnmapbox/maps";
 import { Camera } from "~/components/Map/Camera";
+import { ExhibitionAnnotation } from "~/components/Map/ExhibitionAnnotation";
 import { MapControls } from "~/components/Map/MapControls";
 import { RegionLayer } from "~/components/Map/RegionLayer";
 import { UserLocation } from "~/components/Map/UserLocation";
@@ -18,7 +20,7 @@ const MAPBOX_PUBLIC_TOKEN =
 MapboxGL.setAccessToken(MAPBOX_PUBLIC_TOKEN);
 
 export const MapScreen = () => {
-    const { mapRef, setCameraInfo, cameraInfo, setIsMapLoaded, isMapLoaded } =
+    const { mapRef, setCameraInfo, cameraInfo, setIsMapLoaded, layerURL } =
         useMapContext();
 
     const { hasLocationPermission } = usePermissionsContext();
@@ -27,19 +29,19 @@ export const MapScreen = () => {
         setCameraInfo(state.properties);
     };
 
-    const layers = [
-        MapboxGL.StyleURL.SatelliteStreet,
-        MapboxGL.StyleURL.Street,
-        MapboxGL.StyleURL.TrafficNight,
-    ];
+    const [exhibitions, setExhibitions] = useState<TExhibitionList[]>([]);
 
-    const [layer, setLayer] = useState(layers[0]);
-
-    const cycleMapStyle = () => {
-        const currentIndex = layers.indexOf(layer);
-        const nextIndex = (currentIndex + 1) % layers.length;
-        setLayer(layers[nextIndex]);
+    const fetchExhibitions = async () => {
+        try {
+            const { data } = await client.api.exhibitions.get();
+            if (!data) {
+                throw new Error("No exhibitions found");
+            }
+            setExhibitions(data);
+        } catch (err) {}
     };
+
+    fetchExhibitions();
 
     return (
         <View style={styles.page}>
@@ -47,7 +49,7 @@ export const MapScreen = () => {
             <MapboxGL.MapView
                 ref={mapRef}
                 style={styles.map}
-                styleURL={layer}
+                styleURL={layerURL}
                 onDidFinishLoadingMap={() => setIsMapLoaded(true)}
                 onCameraChanged={(state) => handleCameraChange(state)}
                 onMapLoadingError={() => console.error("Map failed loading:")} // Added fallback for error message
@@ -55,38 +57,15 @@ export const MapScreen = () => {
                 <Camera />
                 <RegionLayer />
                 {hasLocationPermission && <UserLocation />}
-
-                {/*{mapLoaded && exhibition && MapboxGL.PointAnnotation && (*/}
-                {/*    <MapboxGL.PointAnnotation*/}
-                {/*        id={exhibition.id}*/}
-                {/*        coordinate={exhibition.location}*/}
-                {/*    >*/}
-                {/*        <View*/}
-                {/*            style={{*/}
-                {/*                alignItems: "center",*/}
-                {/*                justifyContent: "center",*/}
-                {/*            }}*/}
-                {/*        >*/}
-                {/*            <Image*/}
-                {/*                source={{*/}
-                {/*                    uri:*/}
-                {/*                        "http://192.168.1.96:15336/api/medias/" +*/}
-                {/*                        exhibition.cover,*/}
-                {/*                }}*/}
-                {/*                style={styles.imageMarker}*/}
-                {/*                onError={(e) =>*/}
-                {/*                    console.error(*/}
-                {/*                        "Error loading image:",*/}
-                {/*                        e.nativeEvent.error,*/}
-                {/*                    )*/}
-                {/*                }*/}
-                {/*            />*/}
-                {/*        </View>*/}
-                {/*    </MapboxGL.PointAnnotation>*/}
-                {/*)}*/}
+                {exhibitions.map((exhibition) => (
+                    <ExhibitionAnnotation
+                        key={exhibition.id}
+                        exhibition={exhibition}
+                    />
+                ))}
             </MapboxGL.MapView>
 
-            {cameraInfo && <MapControls onMapLayerChange={cycleMapStyle} />}
+            {cameraInfo && <MapControls />}
         </View>
     );
 };
