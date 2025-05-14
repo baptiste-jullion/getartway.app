@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+    createContext,
+    ReactNode,
+    useContext,
+    useEffect,
+    useState,
+} from "react";
 import { PermissionsAndroid, Platform } from "react-native";
 
 interface PermissionsContextType {
@@ -28,6 +34,10 @@ export const PermissionsProvider = ({ children }: { children: ReactNode }) => {
             }
         }
     };
+
+    useEffect(() => {
+        requestLocationPermission();
+    }, [requestLocationPermission]);
 
     return (
         <PermissionsContext.Provider
