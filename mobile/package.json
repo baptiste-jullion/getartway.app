@@ -9,18 +9,18 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@getartway/api": "*",
     "@elysiajs/eden": "^1.2.0",
     "@expo/metro-runtime": "~4.0.1",
+    "@getartway/api": "*",
     "@rnmapbox/maps": "^10.1.38",
     "expo": "~52.0.46",
-    "expo-location": "^18.0.10",
+    "expo-location": "~18.0.10",
     "expo-status-bar": "~2.0.1",
     "mapbox-gl": "^3.11.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.9",
-    "react-native-svg": "^15.11.2",
+    "react-native-svg": "15.8.0",
     "react-native-svg-transformer": "^1.5.0",
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "~0.19.13"
