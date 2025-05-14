@@ -11,22 +11,22 @@
     "setup": "bun install --clean && cd ./api && bun run prisma:generate && bun run prepare"
   },
   "devDependencies": {
-    "@eslint/js": "^9.22.0",
+    "@eslint/js": "^9.26.0",
     "@stylistic/eslint-plugin-ts": "^4.2.0",
     "@types/bun": "latest",
-    "eslint": "^9.22.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-prettier": "^5.2.3",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-vue": "^10.0.0",
-    "globals": "^16.0.0",
+    "eslint-plugin-vue": "^10.1.0",
+    "globals": "^16.1.0",
     "jiti": "^2.4.2",
-    "typescript-eslint": "^8.27.0"
+    "typescript-eslint": "^8.32.1"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "elysia": "^1.2.25"
+    "elysia": "^1.3.1"
   }
 }
