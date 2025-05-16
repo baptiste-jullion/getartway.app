@@ -16,4 +16,36 @@ export class ExhibitionService {
             cover: `${Bun.env.API_URL}/api/medias/${exhibition.cover}`,
         }));
     }
+
+    static async retrieve(exhibitionId: string) {
+        const results = await db.exhibition.findUnique({
+            where: {
+                id: exhibitionId,
+            },
+            include: {
+                artists: {
+                    include: {
+                        artist: true,
+                    },
+                },
+                location: true,
+                category: true,
+            },
+        });
+
+        if (!results) {
+            throw new Error("Exhibition not found");
+        }
+
+        return {
+            ...results,
+            cover: `${Bun.env.API_URL}/api/medias/${results.cover}`,
+            artists: results.artists.map((artist) => {
+                return {
+                    ...artist.artist,
+                    image: `${Bun.env.API_URL}/api/medias/${artist.artist.image}`,
+                };
+            }),
+        };
+    }
 }
