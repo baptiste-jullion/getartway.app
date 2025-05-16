@@ -10,7 +10,6 @@ export const UserLocation = () => {
             {
                 <MapboxGL.UserLocation
                     visible={true}
-                    showsUserHeadingIndicator={true}
                     onUpdate={(location) => setUserLocation(location)}
                 />
             }
