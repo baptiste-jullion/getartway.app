@@ -58,6 +58,7 @@ model Location {
   id   String                                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   lat  Float
   lng  Float
+  city String
   geom Unsupported("geometry(Point, 4326)")?
 
   user       User?       @relation("UserLocation")
@@ -80,10 +81,13 @@ model Artist {
 }
 
 model Category {
-  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   label       String
-  highlighted Boolean @default(false)
-  description String  @db.Text
+  highlighted Boolean      @default(false)
+  description String       @db.Text
+  fgColor     String       @db.VarChar(7)
+  bgColor     String       @db.VarChar(7)
+  icon        CategoryIcon
 
   exhibitions Exhibition[]
   artists     ArtistCategory[]
@@ -92,6 +96,18 @@ model Category {
 
   createdAt DateTime @default(now()) @db.Timestamp()
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
+}
+
+enum CategoryIcon {
+  Fashion
+  GraphicArt
+  Interactive
+  Photo
+  Sculpture
+  Sound
+  StreetArt
+  Video
+  Virtual
 }
 
 model News {
