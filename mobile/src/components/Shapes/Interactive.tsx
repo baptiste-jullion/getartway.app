@@ -2,7 +2,7 @@ import { ArtwayColors } from "~/utils/constants";
 import * as React from "react";
 import Svg, { ClipPath, Defs, G, Path, SvgProps } from "react-native-svg";
 
-const Interactif = (props: SvgProps) => (
+const Interactive = (props: SvgProps) => (
     <Svg
         width={24}
         height={24}
@@ -23,4 +23,4 @@ const Interactif = (props: SvgProps) => (
         </Defs>
     </Svg>
 );
-export default Interactif;
+export default Interactive;

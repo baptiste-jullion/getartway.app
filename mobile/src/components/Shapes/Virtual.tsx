@@ -2,7 +2,7 @@ import { ArtwayColors } from "~/utils/constants";
 import * as React from "react";
 import Svg, { ClipPath, Defs, G, Path, SvgProps } from "react-native-svg";
 
-const Virtuel = (props: SvgProps) => (
+const Virtual = (props: SvgProps) => (
     <Svg
         width={24}
         height={24}
@@ -20,4 +20,4 @@ const Virtuel = (props: SvgProps) => (
         </Defs>
     </Svg>
 );
-export default Virtuel;
+export default Virtual;

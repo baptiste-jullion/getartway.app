@@ -2,7 +2,7 @@ import { ArtwayColors } from "~/utils/constants";
 import * as React from "react";
 import Svg, { ClipPath, Defs, G, Path, SvgProps } from "react-native-svg";
 
-const Sonore = (props: SvgProps) => (
+const Sound = (props: SvgProps) => (
     <Svg
         width={24}
         height={24}
@@ -21,4 +21,4 @@ const Sonore = (props: SvgProps) => (
         </Defs>
     </Svg>
 );
-export default Sonore;
+export default Sound;
