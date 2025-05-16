@@ -13,14 +13,17 @@
         "./src/hooks/*"
       ],
       "~/screens/*": [
-          "./src/screens/*"
+        "./src/screens/*"
       ],
       "~/contexts/*": [
-          "./src/contexts/*"
+        "./src/contexts/*"
       ],
       "~/utils/*": [
-          "./src/utils/*"
+        "./src/utils/*"
       ],
+      "~/*": [
+        "./src/*"
+      ]
     }
   }
 }
