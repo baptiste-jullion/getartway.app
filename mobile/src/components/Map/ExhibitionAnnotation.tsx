@@ -2,6 +2,7 @@ import type { TExhibitionList } from "@getartway/api/src/dtos/exhibition.dto";
 import MapboxGL from "@rnmapbox/maps";
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { SheetManager } from "react-native-actions-sheet";
 
 interface ExhibitionAnnotationProps {
     exhibition: TExhibitionList;
@@ -20,6 +21,13 @@ export const ExhibitionAnnotation = ({
         <MapboxGL.PointAnnotation
             id={exhibition.id}
             coordinate={[exhibition.location.lng, exhibition.location.lat]}
+            onSelected={() => {
+                SheetManager.show("exhibition-sheet", {
+                    payload: {
+                        exhibitionId: exhibition.id,
+                    },
+                });
+            }}
         >
             <View
                 style={{
