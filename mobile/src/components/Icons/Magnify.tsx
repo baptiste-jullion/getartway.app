@@ -1,10 +1,11 @@
+import { ArtwayColors } from "~/utils/constants";
 import * as React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
 const Magnify = (props: SvgProps) => (
     <Svg width={24} height={24} viewBox="0 0 140 140" fill="none" {...props}>
         <Path
-            fill="#000"
+            fill={ArtwayColors.BLACK}
             d="M56.85 12C31.555 12 11 32.58 11 57.854c0 25.273 20.58 45.853 45.85 45.853 10.242 0 20.175-3.406 28.225-9.742l33.512 33.515a5.681 5.681 0 0 0 8.027-8.028L93.078 85.914c6.264-8.028 9.623-17.913 9.623-28.06 0-25.297-20.58-45.854-45.85-45.854Zm-.023 80.369c-19.008 0-34.49-15.483-34.49-34.492 0-19.008 15.482-34.491 34.49-34.491 19.007 0 34.489 15.483 34.489 34.491 0 19.009-15.483 34.492-34.49 34.492Z"
         />
     </Svg>

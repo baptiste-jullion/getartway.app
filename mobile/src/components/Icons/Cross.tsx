@@ -1,10 +1,11 @@
+import { ArtwayColors } from "~/utils/constants";
 import * as React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
 const Cross = (props: SvgProps) => (
     <Svg width={24} height={24} viewBox="0 0 140 140" fill="none" {...props}>
         <Path
-            fill="#000"
+            fill={ArtwayColors.BLACK}
             d="M117.966 124.81a6.831 6.831 0 0 0 4.835-2.001 6.843 6.843 0 0 0 0-9.671L82.358 72.692a3.235 3.235 0 0 1 0-4.574L122.8 27.672a6.843 6.843 0 0 0 0-9.671 6.842 6.842 0 0 0-9.67 0L72.688 58.447a3.234 3.234 0 0 1-4.573 0L27.67 18.001a6.842 6.842 0 0 0-9.67 0 6.844 6.844 0 0 0 0 9.67l40.443 40.447a3.235 3.235 0 0 1 0 4.574l-40.443 40.446a6.844 6.844 0 0 0 0 9.671 6.842 6.842 0 0 0 9.67 0l40.444-40.446a3.234 3.234 0 0 1 4.573 0l40.443 40.446a6.833 6.833 0 0 0 4.835 2.001Z"
         />
     </Svg>
