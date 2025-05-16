@@ -17,5 +17,7 @@ declare module "bun" {
         API_PORT: API_PORT;
         API_HOST: API_HOST;
         API_URL: `${API_PROTOCOL}://${API_HOST}:${API_PORT}`;
+
+        MAPBOX_PUBLIC_KEY: string;
     }
 }
