@@ -51,10 +51,11 @@ const app = new Elysia()
                 }),
             ),
     )
-    .listen(Number(Bun.env.API_PORT) || 3000);
+    .listen({
+        port: 3000,
+        hostname: "0.0.0.0",
+    });
 
-console.log(
-    `API is running @ ${app.server?.url}\n Docs are available @ ${app.server?.url}docs/`,
-);
+console.log(`API is running on container @ ${app.server?.url}`);
 
 export type App = typeof app;

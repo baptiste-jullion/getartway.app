@@ -1,0 +1,3 @@
+services:
+  api:
+    command: bun run start

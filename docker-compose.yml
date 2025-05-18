@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: getartway-db-${ENV}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}-${ENV}
+      POSTGRES_USER: ${DB_USER}-${ENV}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}-${ENV}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT_ON_HOST}:5432"
+
+  api:
+    container_name: getartway-api-${ENV}
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    working_dir: /app
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}-${ENV}:${DB_PASSWORD}-${ENV}@db:5432/${DB_NAME}-${ENV}?schema=public
+      SHADOW_DATABASE_URL: postgresql://${DB_USER}-${ENV}:${DB_PASSWORD}-${ENV}@db:5432/shadow_${DB_NAME}-${ENV}
+      MAPBOX_PUBLIC_KEY: ${MAPBOX_PUBLIC_KEY}
+      MAPBOX_SECRET_KEY: ${MAPBOX_SECRET_KEY}
+    ports:
+      - "${API_PORT_ON_HOST}:3000"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+    name: getartway-pgdata-${ENV}
