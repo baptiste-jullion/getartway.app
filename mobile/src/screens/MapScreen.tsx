@@ -35,10 +35,10 @@ export const MapScreen = () => {
                 throw new Error("No exhibitions found");
             }
             setExhibitions(data);
-        } catch (err) {}
+        } catch (err) {
+            console.error(err);
+        }
     };
-
-    fetchExhibitions();
 
     return (
         <View style={styles.page}>
@@ -47,7 +47,10 @@ export const MapScreen = () => {
                 ref={mapRef}
                 style={styles.map}
                 styleURL={layerURL}
-                onDidFinishLoadingMap={() => setIsMapLoaded(true)}
+                onDidFinishLoadingMap={() => {
+                    setIsMapLoaded(true);
+                    fetchExhibitions();
+                }}
                 onCameraChanged={(state) => handleCameraChange(state)}
                 onMapLoadingError={() => console.error("Map failed loading:")} // Added fallback for error message
             >
