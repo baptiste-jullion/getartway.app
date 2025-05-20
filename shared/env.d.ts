@@ -1,23 +1,15 @@
 declare module "bun" {
-    interface Env<
-        API_PROTOCOL extends "http" | "https",
-        API_PORT extends number,
-        API_HOST extends `${number}.${number}.${number}.${number}`,
-    > {
-        DB_HOST: string;
-        DB_PORT: number;
+    interface Env {
+        ENV: "development" | "production";
         DB_NAME: string;
         DB_USER: string;
         DB_PASSWORD: string;
-
-        DB_URL: string;
-        SHADOW_DATABASE_URL: string;
-
-        API_PROTOCOL: API_PROTOCOL;
-        API_PORT: API_PORT;
-        API_HOST: API_HOST;
-        API_URL: `${API_PROTOCOL}://${API_HOST}:${API_PORT}`;
-
+        API_PROTOCOL: "http" | "https";
+        API_HOST: string;
+        API_URL: string;
         MAPBOX_PUBLIC_KEY: string;
+        MAPBOX_SECRET_KEY: string;
+        DB_PORT_ON_HOST: number;
+        API_PORT_ON_HOST: number;
     }
 }
