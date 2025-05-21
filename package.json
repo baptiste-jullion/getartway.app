@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "docker:dev": "docker compose --env-file .env up --build",
-    "docker:deploy": "docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up --build"
+    "docker:deploy": "docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up --build -d"
   },
   "devDependencies": {
     "@eslint/js": "^9.26.0",
