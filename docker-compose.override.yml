@@ -1,5 +1,5 @@
 services:
   api:
-    entrypoint: ./entrypoint.sh
+    entrypoint: ./entrypoint.dev.sh
     volumes:
       - ./api:/app
