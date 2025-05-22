@@ -1,4 +1,6 @@
 import swagger from "@elysiajs/swagger";
+import { ArtistController } from "#controllers/artist.controller";
+import { CategoryController } from "#controllers/category.controller";
 import { ExhibitionController } from "#controllers/exhibition.controller";
 import { UserController } from "#controllers/user.controller";
 import { Elysia } from "elysia";
@@ -28,6 +30,8 @@ const app = new Elysia()
         app
             .use(UserController)
             .use(ExhibitionController)
+            .use(CategoryController)
+            .use(ArtistController)
             .group("/medias", (app) =>
                 app.get("/:id/", async ({ params, set }) => {
                     const { id } = params;
