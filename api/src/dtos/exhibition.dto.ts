@@ -1,3 +1,6 @@
+import { ArtistReadDTO } from "#dtos/artist.dto";
+import { CategoryReadDTO } from "#dtos/category.dto";
+import { LocationReadDTO } from "#dtos/location.dto";
 import { t } from "elysia";
 
 const ExhibitionDTO = t.Object({
@@ -12,41 +15,13 @@ const ExhibitionDTO = t.Object({
     }),
     cover: t.String(),
     price: t.Number(),
-    location: t.Object({
-        id: t.String({ format: "uuid" }),
-        lat: t.Number({ format: "float", examples: [45.900002] }),
-        lng: t.Number({ format: "float", examples: [6.1252859] }),
-        city: t.String({ maxLength: 255, examples: ["Annecy"] }),
-    }),
+    location: LocationReadDTO,
     isReviewed: t.Boolean({ default: false }),
     website: t.String(),
 
-    artists: t.Array(
-        t.Object({
-            id: t.String({ format: "uuid" }),
-            name: t.String({ maxLength: 255 }),
-            image: t.String(),
-        }),
-    ),
+    artists: t.Array(ArtistReadDTO),
 
-    category: t.Object({
-        id: t.String({ format: "uuid" }),
-        label: t.String(),
-        description: t.String(),
-        fgColor: t.String(),
-        bgColor: t.String(),
-        icon: t.UnionEnum([
-            "Fashion",
-            "GraphicArt",
-            "Interactive",
-            "Photo",
-            "Sculpture",
-            "Sound",
-            "StreetArt",
-            "Video",
-            "Virtual",
-        ]),
-    }),
+    category: CategoryReadDTO,
 
     createdAt: t.Date({
         examples: [new Date()],
