@@ -6,7 +6,7 @@ export class ArtistService {
 
         return results.map((artist) => ({
             ...artist,
-            cover: `${Bun.env.API_URL}/api/medias/${artist.image}`,
+            image: `${Bun.env.API_URL}/api/medias/${artist.image}`,
         }));
     }
 }
