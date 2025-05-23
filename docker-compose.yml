@@ -29,6 +29,15 @@ services:
     depends_on:
       - db
 
+  website:
+    container_name: getartway-website-${ENV}
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    working_dir: /app
+    ports:
+      - "${WEBSITE_PORT_ON_HOST}:3000"
+
 volumes:
   pgdata:
     name: getartway-pgdata-${ENV}

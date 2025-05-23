@@ -108,6 +108,10 @@ export default [
                     math: "always",
                 },
             ],
+
+            "vue/multi-word-component-names": "off",
+
+            "no-undef": "off",
         },
     },
 ] as Linter.Config;

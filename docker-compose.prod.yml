@@ -1,3 +1,5 @@
 services:
   api:
     entrypoint: ./entrypoint.prod.sh
+  website:
+    entrypoint: ./entrypoint.prod.sh

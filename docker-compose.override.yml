@@ -3,3 +3,7 @@ services:
     entrypoint: ./entrypoint.dev.sh
     volumes:
       - ./api:/app
+  website:
+    entrypoint: ./entrypoint.dev.sh
+    volumes:
+      - ./website:/app
