@@ -2,6 +2,10 @@ name: Deploy API
 
 on:
   push:
+    paths:
+      - 'website/**'
+      - 'docker*.yml'
+      - '**/Dockerfile'
     branches: [main]
 
 jobs:
@@ -23,6 +27,6 @@ jobs:
           ssh -p 12018 ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
             cd /home/sites/getartway.app
             git pull origin main
-            docker compose down
-            docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+            docker compose down website
+            docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up website --build -d
           EOF
