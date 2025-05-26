@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import { ExpoConfig } from "expo/config";
 
 dotenv.config();
 
@@ -10,11 +11,15 @@ export default {
         orientation: "portrait",
         icon: "./assets/icon.png",
         userInterfaceStyle: "light",
+        scheme: "artway-scheme",
         newArchEnabled: true,
         splash: {
             image: "./assets/splash-icon.png",
             resizeMode: "contain",
             backgroundColor: "#ffffff",
+        },
+        experiments: {
+            typedRoutes: true,
         },
         ios: {
             supportsTablet: true,
@@ -40,6 +45,7 @@ export default {
                 },
             ],
             "expo-font",
+            "expo-router",
         ],
         extra: {
             eas: {
@@ -49,4 +55,4 @@ export default {
             API_URL: process.env.API_URL,
         },
     },
-};
+} as { expo: ExpoConfig };

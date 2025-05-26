@@ -10,7 +10,7 @@ import { usePermissionsContext } from "~/contexts/PermissionsContext";
 import client from "~/hooks/useApiClient";
 import Constants from "expo-constants";
 import { useState } from "react";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 MapboxGL.setAccessToken(Constants.expoConfig?.extra?.MAPBOX_PUBLIC_KEY);
 
@@ -40,7 +40,6 @@ export const MapScreen = () => {
 
     return (
         <View style={styles.page}>
-            <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
             <MapboxGL.MapView
                 ref={mapRef}
                 style={styles.map}
