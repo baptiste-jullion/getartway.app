@@ -1,6 +1,7 @@
 import { treaty } from "@elysiajs/eden";
 import { App } from "@getartway/api";
+import Constants from "expo-constants";
 
-const client = treaty<App>("http://192.168.1.96:2346");
+const client = treaty<App>(Constants.expoConfig?.extra?.API_URL);
 
 export default client;

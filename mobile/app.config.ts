@@ -45,6 +45,8 @@ export default {
             eas: {
                 projectId: "874a5c1a-2653-46a4-b04a-5a143613f833",
             },
+            MAPBOX_PUBLIC_KEY: process.env.MAPBOX_PUBLIC_KEY,
+            API_URL: process.env.API_URL,
         },
     },
 };

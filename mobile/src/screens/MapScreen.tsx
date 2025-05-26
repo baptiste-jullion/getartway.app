@@ -8,13 +8,11 @@ import { UserLocation } from "~/components/Map/UserLocation";
 import { useMapContext } from "~/contexts/MapContext";
 import { usePermissionsContext } from "~/contexts/PermissionsContext";
 import client from "~/hooks/useApiClient";
+import Constants from "expo-constants";
 import { useState } from "react";
 import { StatusBar, StyleSheet, View } from "react-native";
 
-const MAPBOX_PUBLIC_TOKEN =
-    "pk.eyJ1IjoiYXJ0d2F5IiwiYSI6ImNtOWZ1c2hzcDF2MW4ybnM0MGZ0NzNhNjcifQ.zwBRMxwfbQMt3oAXgKyEnw";
-
-MapboxGL.setAccessToken(MAPBOX_PUBLIC_TOKEN);
+MapboxGL.setAccessToken(Constants.expoConfig?.extra?.MAPBOX_PUBLIC_KEY);
 
 export const MapScreen = () => {
     const { mapRef, setCameraInfo, cameraInfo, setIsMapLoaded, layerURL } =
