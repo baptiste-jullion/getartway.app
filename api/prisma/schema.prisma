@@ -8,7 +8,7 @@ generator client {
 datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
   extensions        = [postgis]
 }
 
@@ -35,8 +35,8 @@ model Exhibition {
   id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title       String   @db.VarChar(255)
   description String   @db.Text
-  startDate   DateTime @db.Timestamp()
-  endDate     DateTime @db.Timestamp()
+  startDate   DateTime? @db.Timestamp()
+  endDate     DateTime? @db.Timestamp()
   cover       String
   price       Float
   isReviewed  Boolean  @default(false)

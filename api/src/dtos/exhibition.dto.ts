@@ -7,12 +7,16 @@ const ExhibitionDTO = t.Object({
     id: t.String({ format: "uuid" }),
     title: t.String({ maxLength: 255 }),
     description: t.String(),
-    startDate: t.Date({
-        examples: [new Date()],
-    }),
-    endDate: t.Date({
-        examples: [new Date()],
-    }),
+    startDate: t.Nullable(
+        t.Date({
+            examples: [new Date()],
+        }),
+    ),
+    endDate: t.Nullable(
+        t.Date({
+            examples: [new Date()],
+        }),
+    ),
     cover: t.String(),
     price: t.Number(),
     location: LocationReadDTO,
