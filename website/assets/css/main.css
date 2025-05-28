@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+    --color-artway-black: #1C1C1A;
+    --color-artway-red: #E51F3B;
+    --color-artway-white: #FFFFFF;
+    --color-artway-yellow: #F4980C;
+    --color-artway-light-grey: #F8F7F7;
+    --color-artway-average-grey: #CCCCCC;
+    --color-artway-dark-grey: #858484;
+    --color-artway-light-blue: #66C2C6;
+    --color-artway-dark-blue: #23274F;
+
+    --font-sans: "DM Sans", sans-serif;
+    --font-headings: "Funnel Display", sans-serif;
+}
