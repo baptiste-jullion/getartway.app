@@ -12,7 +12,6 @@ export const Camera = () => {
             defaultSettings={{
                 centerCoordinate: LocationsConstants.ANNECY,
             }}
-            minZoomLevel={8}
             maxZoomLevel={16}
             maxBounds={{
                 ne: LocationsConstants.ARA_MAX_NE,
