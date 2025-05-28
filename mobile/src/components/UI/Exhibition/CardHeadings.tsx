@@ -26,7 +26,7 @@ export const CardHeadings: React.FC<CardHeadingsProps> = ({
                 alignItems: "center",
             }}
         >
-            <Shape name={category.icon} props={{ width: 30, height: 30 }} />
+            <Shape name={category.icon} width={30} height={30} />
             <View
                 style={{
                     flexShrink: 1,
