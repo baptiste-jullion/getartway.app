@@ -60,12 +60,11 @@ const IconComponents = {
     UserOutlined,
 };
 
-export interface IconProps {
+export interface IconProps extends SvgProps {
     name: keyof typeof IconComponents;
-    props?: SvgProps;
 }
 
-export const Icon: React.FC<IconProps> = ({ name, props }) => {
+export const Icon: React.FC<IconProps> = ({ name, ...props }) => {
     const IconComponent = IconComponents[name];
 
     return <IconComponent {...props} />;

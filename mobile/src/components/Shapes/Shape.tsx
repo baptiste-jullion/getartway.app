@@ -22,12 +22,11 @@ const ShapeComponents = {
     Virtual,
 };
 
-interface ShapeProps {
+interface ShapeProps extends SvgProps {
     name: keyof typeof ShapeComponents;
-    props?: SvgProps;
 }
 
-export const Shape: React.FC<ShapeProps> = ({ name, props }) => {
+export const Shape: React.FC<ShapeProps> = ({ name, ...props }) => {
     const ShapeComponent = ShapeComponents[name];
 
     return <ShapeComponent {...props} />;
