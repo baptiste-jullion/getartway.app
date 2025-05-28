@@ -1,68 +1,63 @@
-import BookOpenFilled from "~/components/Icons/BookOpenFilled";
-import BookOpenOutlined from "~/components/Icons/BookOpenOutlined";
-import CompassFilled from "~/components/Icons/CompassFilled";
-import CompassOutlined from "~/components/Icons/CompassOutlined";
-import HeartFilled from "~/components/Icons/HeartFilled";
-import HeartOutlined from "~/components/Icons/HeartOutlined";
-import HouseFilled from "~/components/Icons/HouseFilled";
-import HouseOutlined from "~/components/Icons/HouseOutlined";
-import UserFilled from "~/components/Icons/UserFilled";
-import UserOutlined from "~/components/Icons/UserOutlined";
+import { Icon, IconProps } from "~/components/Icons/Icon";
 import { ArtwayColors } from "~/utils/constants";
 import { Tabs } from "expo-router";
+
+const TABS: {
+    title: string;
+    name: string;
+    icon: [IconProps["name"], IconProps["name"]];
+}[] = [
+    {
+        title: "Home",
+        name: "index",
+        icon: ["HouseFilled", "HouseOutlined"],
+    },
+    {
+        title: "Actus",
+        name: "news",
+        icon: ["BookOpenFilled", "BookOpenOutlined"],
+    },
+    {
+        title: "Explorer",
+        name: "explore",
+        icon: ["CompassFilled", "CompassOutlined"],
+    },
+    {
+        title: "Favoris",
+        name: "favorites",
+        icon: ["HeartFilled", "HeartOutlined"],
+    },
+    {
+        title: "Compte",
+        name: "account",
+        icon: ["UserFilled", "UserOutlined"],
+    },
+];
 
 export default function TabLayout() {
     return (
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: ArtwayColors.BLACK,
+                tabBarHideOnKeyboard: true,
             }}
         >
-            <Tabs.Screen
-                name="index"
-                options={{
-                    headerShown: false,
-                    title: "Home",
-                    tabBarIcon: ({ focused }) =>
-                        focused ? <HouseFilled /> : <HouseOutlined />,
-                }}
-            />
-            <Tabs.Screen
-                name="news"
-                options={{
-                    headerShown: false,
-                    title: "Actus",
-                    tabBarIcon: ({ focused }) =>
-                        focused ? <BookOpenFilled /> : <BookOpenOutlined />,
-                }}
-            />
-            <Tabs.Screen
-                name="explore"
-                options={{
-                    headerShown: false,
-                    title: "Explorer",
-                    tabBarIcon: ({ focused }) =>
-                        focused ? <CompassFilled /> : <CompassOutlined />,
-                }}
-            />
-            <Tabs.Screen
-                name="favorites"
-                options={{
-                    headerShown: false,
-                    title: "Favoris",
-                    tabBarIcon: ({ focused }) =>
-                        focused ? <HeartFilled /> : <HeartOutlined />,
-                }}
-            />
-            <Tabs.Screen
-                name="account"
-                options={{
-                    headerShown: false,
-                    title: "Compte",
-                    tabBarIcon: ({ focused }) =>
-                        focused ? <UserFilled /> : <UserOutlined />,
-                }}
-            />
+            {TABS.map((tab) => (
+                <Tabs.Screen
+                    key={tab.name}
+                    name={tab.name}
+                    options={{
+                        headerShown: false,
+                        title: tab.title,
+                        tabBarIcon: ({ focused }) =>
+                            focused ? (
+                                <Icon name={tab.icon[0]} />
+                            ) : (
+                                <Icon name={tab.icon[1]} />
+                            ),
+                    }}
+                />
+            ))}
         </Tabs>
     );
 }

@@ -1,3 +1,4 @@
+import "~/sheets";
 import { PermissionsProvider } from "~/contexts/PermissionsContext";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
