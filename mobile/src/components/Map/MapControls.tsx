@@ -1,10 +1,11 @@
 import LayersFilled from "~/components/Icons/LayersFilled";
 import MarkerFilled from "~/components/Icons/MarkerFilled";
 import NorthFilled from "~/components/Icons/NorthFilled";
+import { Button } from "~/components/UI/Button";
 import { useMapContext } from "~/contexts/MapContext";
 import { usePermissionsContext } from "~/contexts/PermissionsContext";
 import React, { useState } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 export const MapControls = () => {
     const { cameraInfo, userLocation, setCamera, Layers, setLayerURL } =
@@ -20,7 +21,7 @@ export const MapControls = () => {
 
     return (
         <View style={styles.actions}>
-            <TouchableOpacity onPress={onRotateNorth} style={styles.button}>
+            <Button onPress={onRotateNorth}>
                 <NorthFilled
                     style={{
                         transform: [
@@ -30,18 +31,15 @@ export const MapControls = () => {
                         ],
                     }}
                 />
-            </TouchableOpacity>
+            </Button>
             <View style={styles.layers}>
-                <TouchableOpacity
-                    onPress={() => setLayerVisible(!layerVisible)}
-                    style={styles.button}
-                >
+                <Button onPress={() => setLayerVisible(!layerVisible)}>
                     <LayersFilled />
-                </TouchableOpacity>
+                </Button>
                 {layerVisible && (
                     <View style={styles.layersRow}>
                         {Object.entries(Layers).map(([key, value]) => (
-                            <TouchableOpacity
+                            <Button
                                 key={key}
                                 onPress={() => {
                                     setLayerURL(value.url);
@@ -53,13 +51,13 @@ export const MapControls = () => {
                                     style={styles.image}
                                     source={value.preview}
                                 />
-                            </TouchableOpacity>
+                            </Button>
                         ))}
                     </View>
                 )}
             </View>
             {hasLocationPermission && userLocation && (
-                <TouchableOpacity
+                <Button
                     onPress={async () => {
                         setCamera({
                             centerCoordinate: [
@@ -70,10 +68,9 @@ export const MapControls = () => {
                             animationDuration: 2000,
                         });
                     }}
-                    style={styles.button}
                 >
                     <MarkerFilled />
-                </TouchableOpacity>
+                </Button>
             )}
         </View>
     );
@@ -113,8 +110,6 @@ const styles = StyleSheet.create({
     buttonImage: {
         borderColor: "white",
         borderWidth: 2,
-        width: 48,
-        height: 48,
         borderRadius: 16,
         overflow: "hidden",
     },
