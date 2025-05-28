@@ -1,30 +1,232 @@
 locations:
-  - id: "ec621edd-3549-4bfe-bd24-a2fdcda725a5"
-    lat: 45.8976807
-    lng: 6.1252859
-
-artists:
-  - id: "fd55bfc2-956e-480c-8001-74dc1f404ed3"
-    name: "Joël Gangloff"
-    image: "0acc5f8a-31e4-46ba-a11b-e5d00026d411"
+  - id: 837eb43a-bfe4-4c0d-82e7-7c5150abfcac
+    lat: 45.7597
+    lng: 4.8422
+  - id: fb64edb9-6262-45c4-acaf-3638bf45c73d
+    lat: 44.9313
+    lng: 4.8924
+  - id: 7c5f2d5c-4dd6-4fcf-af41-32fe1c3c6285
+    lat: 46.5654
+    lng: 3.3264
+  - id: db640982-a4ff-4a7c-8c36-fd906674126d
+    lat: 45.4397
+    lng: 4.3873
+  - id: 9c09809c-d4a3-4eea-9e19-a0abf3fc9621
+    lat: 45.1885
+    lng: 5.7245
+  - id: 1209b3ca-be09-4b07-bbca-f6f63b662dd5
+    lat: 45.1885
+    lng: 5.7245
+  - id: 075cbc71-fb97-4679-b805-4d4169e856d7
+    lat: 46.1356
+    lng: 3.4648
+  - id: 920aaf7b-e18c-4986-9582-e3cb79b5efcc
+    lat: 45.4397
+    lng: 4.3873
+  - id: 3b3d60e3-178a-4b5c-b99a-6e37ced0f2f1
+    lat: 45.0451
+    lng: 3.8849
+  - id: ffdaa92b-4f40-4998-9002-4ec5980f8531
+    lat: 45.5453
+    lng: 3.2451
+  - id: e56d11f9-88f5-4201-a191-ef54fec142c6
+    lat: 45.7597
+    lng: 4.8422
+  - id: 3f4c8c12-bd83-4f84-b857-ef6245167fa0
+    lat: 46.7722
+    lng: 3.1042
+  - id: a9ba9ce5-7155-4857-856c-6b88a4d2649c
+    lat: 45.8344
+    lng: 1.2615
+  - id: 47aa9855-e767-482f-9004-6edb71bb133f
+    lat: 46.0133
+    lng: 6.6933
+  - id: dad6b150-3c35-4fff-93a7-3533fa5bbb54
+    lat: 45.7772
+    lng: 3.087
 
 exhibitions:
-  - id: "9e5885a6-f9a4-454f-9f6d-70e6f7eb6df0"
-    title: "Les lacustres"
-    description: ""
-    startDate: "2024-10-01T00:00:00.000Z"
-    endDate: "2025-09-30T00:00:00.000Z"
-    cover: "775d562e-6e4e-42c3-9fde-b67eb5e1d577"
-    price: 6.5
+  - id: d8bea1fe-4ab9-4c44-8ced-2ddef5b13392
+    categoryId: 4af7c9e2-c80b-4e48-9e72-b08b3a650e87
+    cover: 19a44f94-f8b2-435b-83ed-ef5d6ae24918
+    description: Exploration immersive de l'univers du rêve, de l'Antiquité à nos jours.
+    endDate: 2025-08-24T00:00:00.000Z
     isReviewed: true
-    website: "https://www.lac-annecy.com/fete-et-manifestation/les-lacustres-joel-gangloff-annecy/"
-    categoryId: "cc6b529e-5cdb-48e5-936f-fa0c20fda95e"
-    locationId: "ec621edd-3549-4bfe-bd24-a2fdcda725a5"
+    locationId: 837eb43a-bfe4-4c0d-82e7-7c5150abfcac
+    price: 9
+    startDate: 2024-10-18T00:00:00.000Z
+    title: Le temps d'un rêve
+    website: https://getartway.app
+  - id: 4830818e-1207-4ba1-bb79-3a6467ff48b4
+    categoryId: 998b36f2-590b-4065-8872-060c83ad514a
+    cover: b5e2bd6b-80f1-4f50-842f-dcd4a65cbd9d
+    description: Rétrospective des sculptures géantes et poétiques de l'artiste
+      barcelonais Jaume Plensa.
+    endDate: null
+    isReviewed: true
+    locationId: fb64edb9-6262-45c4-acaf-3638bf45c73d
+    price: 6
+    startDate: 2024-11-09T00:00:00.000Z
+    title: Jaume Plensa. Être là
+    website: https://getartway.app
+  - id: ca9073c6-c2d3-4215-a289-b8dfc6a0ade1
+    categoryId: 4af7c9e2-c80b-4e48-9e72-b08b3a650e87
+    cover: 6c0854fa-0d3c-4c95-ae7a-2df2000e2b98
+    description: Univers spectaculaire mêlant danse, théâtre et arts visuels à
+      travers des costumes excentriques et des installations interactives.
+    endDate: 2025-01-05T00:00:00.000Z
+    isReviewed: true
+    locationId: 7c5f2d5c-4dd6-4fcf-af41-32fe1c3c6285
+    price: 7
+    startDate: null
+    title: Planète(s) Découflé
+    website: https://getartway.app
+  - id: 2d2c9f0d-af91-49a1-953c-7215d19470da
+    categoryId: 998b36f2-590b-4065-8872-060c83ad514a
+    cover: efe29993-cb80-4d75-aae9-b0be44e35017
+    description: Œuvres monumentales issues de la collection du MAMC+, présentées
+      sur les murs gigantesques du musée.
+    endDate: null
+    isReviewed: true
+    locationId: db640982-a4ff-4a7c-8c36-fd906674126d
+    price: 8
+    startDate: 2024-11-09T00:00:00.000Z
+    title: Hors Format
+    website: https://getartway.app
+  - id: 3fdc5370-63c7-4377-a296-dc1de1d43deb
+    categoryId: cc6b529e-5cdb-48e5-936f-fa0c20fda95e
+    cover: 15aed922-3056-40cd-b496-7a3cc39ec4f1
+    description: Événement artistique multidisciplinaire présentant des œuvres
+      variées d'artistes locaux et internationaux.
+    endDate: null
+    isReviewed: true
+    locationId: 9c09809c-d4a3-4eea-9e19-a0abf3fc9621
+    price: 0
+    startDate: null
+    title: "Grenoble Art' Up ! #2"
+    website: https://getartway.app
+  - id: 8f84271c-40a4-4533-b6d8-5c86590b8a44
+    categoryId: a94236b5-01ce-4644-b0c9-f638d86172a2
+    cover: b1fbc414-ddeb-4cfe-993a-8f6ada3fe991
+    description: Focus sur l'artiste espagnol Deih, présentant « Ruins & Stars (And
+      that White Noise in the Background) ».
+    endDate: null
+    isReviewed: true
+    locationId: 1209b3ca-be09-4b07-bbca-f6f63b662dd5
+    price: 0
+    startDate: null
+    title: Exposition collective Street Art Fest Grenoble
+    website: https://getartway.app
+  - id: 72bbc6b7-92b1-4d4d-b08e-0a1a9ab99c41
+    categoryId: a94236b5-01ce-4644-b0c9-f638d86172a2
+    cover: a443d2ea-16fd-47fd-a46f-b238c15a81a4
+    description: Exposition street art dans la Tour Prisonnière, dialogue entre
+      créativité contemporaine et traces historiques des détenus.
+    endDate: null
+    isReviewed: true
+    locationId: 075cbc71-fb97-4679-b805-4d4169e856d7
+    price: 0
+    startDate: null
+    title: Palimpseste
+    website: https://getartway.app
+  - id: cf1d8999-b0e5-464c-a0c7-4d1867452f07
+    categoryId: 4af7c9e2-c80b-4e48-9e72-b08b3a650e87
+    cover: b3023910-68f6-46d8-b33c-442fd4ea01bb
+    description: Exploration interactive du game design, présentant des œuvres
+      autour de 45 thématiques et 30 jeux vidéo jouables.
+    endDate: null
+    isReviewed: true
+    locationId: 920aaf7b-e18c-4986-9582-e3cb79b5efcc
+    price: 0
+    startDate: null
+    title: Design-moi un jeu vidéo
+    website: https://getartway.app
+  - id: 4a38fbf4-689a-41d9-a85f-42759bbeaf84
+    categoryId: 68e565d2-c1ee-48de-b670-6bb32b8323d6
+    cover: 87ea65ff-dc24-49b7-96ab-4cc96ee677ee
+    description: Exposition explorant l'univers de la ruralité à travers le regard
+      de peintres et photographes du XXe siècle.
+    endDate: 2025-01-05T00:00:00.000Z
+    isReviewed: true
+    locationId: 3b3d60e3-178a-4b5c-b99a-6e37ced0f2f1
+    price: 10
+    startDate: 2024-06-29T00:00:00.000Z
+    title: À travers champs
+    website: https://getartway.app
+  - id: 5fbef9df-5646-43c0-994c-35d36e3e069b
+    categoryId: cc6b529e-5cdb-48e5-936f-fa0c20fda95e
+    cover: dd89c011-0eac-4c73-9003-40aba75c5bb9
+    description: Exposition des œuvres de Thierry Sellem, entre street art, bande
+      dessinée et réalisme photographique, explorant des thématiques urbaines
+      sombres.
+    endDate: null
+    isReviewed: true
+    locationId: ffdaa92b-4f40-4998-9002-4ec5980f8531
+    price: 0
+    startDate: null
+    title: Le Graph est voyageur
+    website: https://getartway.app
+  - id: 4bda0fe4-e341-4ea7-af23-21774ab7d218
+    categoryId: 65709f68-6c84-4330-8b0a-21f43787d8f5
+    cover: 4907a66c-3ac4-4fa6-ace4-8554304c5727
+    description: Exposition interrogeant l'évolution des pratiques artistiques à
+      l'aune du développement de l'informatique et de l'IA.
+    endDate: 2025-07-13T00:00:00.000Z
+    isReviewed: true
+    locationId: e56d11f9-88f5-4201-a191-ef54fec142c6
+    price: 8
+    startDate: 2025-03-07T00:00:00.000Z
+    title: Univers Programmés
+    website: https://getartway.app
+  - id: 112cb14c-1140-4e85-bae3-c003f98d6789
+    categoryId: a94236b5-01ce-4644-b0c9-f638d86172a2
+    cover: 177007e9-f57c-4497-b393-0ef2cb697adc
+    description: Premier parc thématique au monde dédié au Street Art, avec plus de
+      22 500m2 de fresques réalisées par des artistes du monde entier.
+    endDate: 2025-11-02T00:00:00.000Z
+    isReviewed: true
+    locationId: 3f4c8c12-bd83-4f84-b857-ef6245167fa0
+    price: 20
+    startDate: 2025-05-01T00:00:00.000Z
+    title: Street Art City
+    website: https://getartway.app
+  - id: 4477785a-2c49-42d6-be8f-093e197ed7fe
+    categoryId: 68e565d2-c1ee-48de-b670-6bb32b8323d6
+    cover: 7940f89b-bf03-4c68-96ca-6d76636edba0
+    description: Exposition photographique présentant des plantes rares et menacées
+      du Massif central, dans le cadre des jardins botaniques de l'Évêché.
+    endDate: 2025-06-20T00:00:00.000Z
+    isReviewed: true
+    locationId: a9ba9ce5-7155-4857-856c-6b88a4d2649c
+    price: 0
+    startDate: 2025-03-26T00:00:00.000Z
+    title: Expo photo - Plantes sauvages du Massif central
+    website: https://getartway.app
+  - id: f0bebfa0-c94a-47d8-8950-701579ce6353
+    categoryId: 68e565d2-c1ee-48de-b670-6bb32b8323d6
+    cover: a7e065be-1997-4395-91ef-305a46287e29
+    description: ""
+    endDate: 2025-05-11T00:00:00.000Z
+    isReviewed: true
+    locationId: 47aa9855-e767-482f-9004-6edb71bb133f
+    price: 0
+    startDate: 2024-12-20T00:00:00.000Z
+    title: Façonner le monde, visions d'ingénieurs photographes en montagne
+    website: https://getartway.app
+  - id: 72609114-5991-4ccf-b06a-2ea9e07b475b
+    categoryId: 68e565d2-c1ee-48de-b670-6bb32b8323d6
+    cover: 18209d31-6dfe-486b-ab89-df9754c24a47
+    description: ""
+    endDate: 2025-06-07T00:00:00.000Z
+    isReviewed: true
+    locationId: dad6b150-3c35-4fff-93a7-3533fa5bbb54
+    price: 0
+    startDate: 2025-04-11T00:00:00.000Z
+    title: DES OISEAUX
+    website: https://getartway.app
 
+
+
+artists:
 artist_categories:
-  - artistId: "fd55bfc2-956e-480c-8001-74dc1f404ed3"
-    categoryId: "cc6b529e-5cdb-48e5-936f-fa0c20fda95e"
-
 artist_exhibitions:
-  - artistId: "fd55bfc2-956e-480c-8001-74dc1f404ed3"
-    exhibitionId: "9e5885a6-f9a4-454f-9f6d-70e6f7eb6df0"

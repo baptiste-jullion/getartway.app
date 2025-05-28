@@ -47,21 +47,21 @@ async function main() {
         data: data.locations,
     });
 
-    await db.artist.createMany({
-        data: data.artists,
-    });
+    // await db.artist.createMany({
+    // data: data.artists,
+    // });
 
     await db.exhibition.createMany({
         data: data.exhibitions,
     });
 
-    await db.artistCategory.createMany({
-        data: data.artist_categories,
-    });
+    // await db.artistCategory.createMany({
+    // data: data.artist_categories,
+    // });
 
-    await db.artistExhibition.createMany({
-        data: data.artist_exhibitions,
-    });
+    // await db.artistExhibition.createMany({
+    // data: data.artist_exhibitions,
+    // });
 }
 
 main()
