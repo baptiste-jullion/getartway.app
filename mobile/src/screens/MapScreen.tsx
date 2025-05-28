@@ -1,4 +1,4 @@
-import { TExhibitionList } from "@getartway/api/src/dtos/exhibition.dto";
+import { TExhibitionList } from "@getartway/api/dist/dtos/exhibition.dto";
 import MapboxGL from "@rnmapbox/maps";
 import { Camera } from "~/components/Map/Camera";
 import { ExhibitionAnnotation } from "~/components/Map/ExhibitionAnnotation";
