@@ -2,7 +2,7 @@ import {
     FunnelDisplay_700Bold,
     useFonts,
 } from "@expo-google-fonts/funnel-display";
-import { TExhibition } from "@getartway/api/src/dtos/exhibition.dto";
+import { TExhibition } from "@getartway/api/dist/dtos/exhibition.dto";
 import { Card } from "~/components/UI/Exhibition/Card";
 import client from "~/hooks/useApiClient";
 import React, { useEffect, useState } from "react";
@@ -36,8 +36,8 @@ export const ExhibitionActionSheet: React.FC<ExhibitionActionSheetProps> = ({
     }, [payload?.exhibitionId]);
 
     return (
-        <ActionSheet gestureEnabled snapPoints={[30, 85]}>
-            <View style={{ padding: 24, height: "100%" }}>
+        <ActionSheet gestureEnabled>
+            <View style={{ padding: 24, height: "auto" }}>
                 {exhibition && <Card exhibition={exhibition} />}
             </View>
         </ActionSheet>

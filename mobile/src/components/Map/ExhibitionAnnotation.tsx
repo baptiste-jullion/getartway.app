@@ -1,4 +1,4 @@
-import type { TExhibitionList } from "@getartway/api/src/dtos/exhibition.dto";
+import type { TExhibitionList } from "@getartway/api/dist/dtos/exhibition.dto";
 import MapboxGL from "@rnmapbox/maps";
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";

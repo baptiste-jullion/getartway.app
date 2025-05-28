@@ -1,6 +1,5 @@
 import MapboxGL from "@rnmapbox/maps";
 import ARAGeoJson from "~/assets/geojson/ara.json";
-import { GeoJSON } from "geojson";
 import React from "react";
 
 export const RegionLayer = () => {
