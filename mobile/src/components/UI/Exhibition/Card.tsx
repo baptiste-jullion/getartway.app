@@ -1,4 +1,4 @@
-import { TExhibition } from "@getartway/api/src/dtos/exhibition.dto";
+import { TExhibition } from "@getartway/api/dist/dtos/exhibition.dto";
 import { CardHeadings } from "~/components/UI/Exhibition/CardHeadings";
 import { CardImage } from "~/components/UI/Exhibition/CardImage";
 import { Tag } from "~/components/UI/Tag";
@@ -12,7 +12,7 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({ exhibition }) => {
     return (
         <View>
-            <CardImage cover={exhibition.cover} />
+            <CardImage cover={exhibition.cover} price={exhibition.price} />
             <View
                 style={{
                     display: "flex",

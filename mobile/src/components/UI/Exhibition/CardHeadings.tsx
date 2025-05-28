@@ -2,7 +2,7 @@ import {
     FunnelDisplay_700Bold,
     useFonts,
 } from "@expo-google-fonts/funnel-display";
-import { TExhibition } from "@getartway/api/src/dtos/exhibition.dto";
+import { TExhibition } from "@getartway/api/dist/dtos/exhibition.dto";
 import { Shape } from "~/components/Shapes/Shape";
 import React from "react";
 import { Text, View } from "react-native";
@@ -27,7 +27,11 @@ export const CardHeadings: React.FC<CardHeadingsProps> = ({
             }}
         >
             <Shape name={category.icon} props={{ width: 30, height: 30 }} />
-            <View>
+            <View
+                style={{
+                    flexShrink: 1,
+                }}
+            >
                 <Text
                     style={{
                         fontSize: 14,

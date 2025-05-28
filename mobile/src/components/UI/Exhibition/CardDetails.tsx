@@ -1,4 +1,4 @@
-import { TExhibition } from "@getartway/api/src/dtos/exhibition.dto";
+import { TExhibition } from "@getartway/api/dist/dtos/exhibition.dto";
 import { CardHeadings } from "~/components/UI/Exhibition/CardHeadings";
 import { Tag } from "~/components/UI/Tag";
 import React from "react";
