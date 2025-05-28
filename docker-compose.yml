@@ -20,7 +20,6 @@ services:
     working_dir: /app
     environment:
       DATABASE_URL: postgresql://${DB_USER}-${ENV}:${DB_PASSWORD}-${ENV}@db:5432/${DB_NAME}-${ENV}?schema=public
-      SHADOW_DATABASE_URL: postgresql://${DB_USER}-${ENV}:${DB_PASSWORD}-${ENV}@db:5432/shadow_${DB_NAME}-${ENV}
       MAPBOX_PUBLIC_KEY: ${MAPBOX_PUBLIC_KEY}
       MAPBOX_SECRET_KEY: ${MAPBOX_SECRET_KEY}
       API_URL: ${API_URL}
