@@ -1,9 +1,10 @@
+import Constants from "expo-constants";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function IndexTab() {
     return (
         <View style={styles.container}>
-            <Text>Tab [Home]</Text>
+            <Text>{JSON.stringify(Constants.expoConfig?.extra)}</Text>
         </View>
     );
 }
