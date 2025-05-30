@@ -9,6 +9,7 @@ export default {
         slug: "mobile",
         version: "1.0.0",
         orientation: "portrait",
+        owner: "baptistejullion",
         icon: "./assets/icon.png",
         userInterfaceStyle: "light",
         scheme: "artway-scheme",
