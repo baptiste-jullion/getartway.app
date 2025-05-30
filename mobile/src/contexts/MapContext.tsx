@@ -38,7 +38,7 @@ const Layers = {
         preview: require("~/assets/map-layers/satellite.png"),
     },
     Street: {
-        url: "mapbox://styles/mapbox/streets-v12",
+        url: "mapbox://styles/mapbox/standard",
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         preview: require("~/assets/map-layers/street.png"),
     },
