@@ -41,6 +41,7 @@ export const MapScreen = () => {
     return (
         <View style={styles.page}>
             <MapboxGL.MapView
+                logoEnabled={false}
                 ref={mapRef}
                 style={styles.map}
                 styleURL={layerURL}
@@ -48,8 +49,9 @@ export const MapScreen = () => {
                     setIsMapLoaded(true);
                     fetchExhibitions();
                 }}
+                scaleBarEnabled={false}
+                attributionEnabled={false}
                 onCameraChanged={(state) => handleCameraChange(state)}
-                onMapLoadingError={() => console.error("Map failed loading:")} // Added fallback for error message
             >
                 <Camera />
                 <RegionLayer />
