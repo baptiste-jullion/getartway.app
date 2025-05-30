@@ -2,6 +2,14 @@
     <section class="flex h-dvh items-center justify-center p-8">
         <div>
             <LogoBaseLine class="w-full" />
+            <a
+                class="mx-auto text-center py-4 px-6 bg-artway-red w-fit mt-8 text-artway-light-grey font-semibold rounded-full block"
+                href="https://expo.dev/artifacts/eas/dHuT6xCp5gAHrjEt2qg6A3.apk"
+                download
+                target="_blank"
+            >
+                Télécharger le prototype en&nbsp;<code>.apk</code>
+            </a>
         </div>
         <footer
             class="fixed bottom-0 p-8 font-medium flex w-full flex-wrap justify-between gap-4"
