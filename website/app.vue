@@ -4,7 +4,7 @@
             <LogoBaseLine class="w-full" />
             <a
                 class="mx-auto text-center py-4 px-6 bg-artway-red w-fit mt-8 text-artway-light-grey font-semibold rounded-full block"
-                href="https://expo.dev/artifacts/eas/dHuT6xCp5gAHrjEt2qg6A3.apk"
+                href="https://expo.dev/artifacts/eas/wR2CjY9rmWtGs3keALWhiX.apk"
                 download
                 target="_blank"
             >
