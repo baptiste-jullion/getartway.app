@@ -1,9 +1,6 @@
-import {
-    FunnelDisplay_700Bold,
-    useFonts,
-} from "@expo-google-fonts/funnel-display";
 import { TExhibition } from "@getartway/api/dist/dtos/exhibition.dto";
 import { Shape } from "~/components/Shapes/Shape";
+import { Heading } from "~/components/UI/Heading";
 import React from "react";
 import { Text, View } from "react-native";
 
@@ -13,10 +10,6 @@ export const CardHeadings: React.FC<CardHeadingsProps> = ({
     title,
     category,
 }) => {
-    const [fontsLoaded] = useFonts({
-        FunnelDisplay_700Bold,
-    });
-
     return (
         <View
             style={{
@@ -32,25 +25,12 @@ export const CardHeadings: React.FC<CardHeadingsProps> = ({
                     flexShrink: 1,
                 }}
             >
-                <Text
-                    style={{
-                        fontSize: 14,
-                        color: category.fgColor,
-                    }}
-                >
+                <Text style={{ fontSize: 14, color: category.fgColor }}>
                     {category.label}
                 </Text>
-                <Text
-                    style={{
-                        fontSize: 20,
-                        color: category.fgColor,
-                        fontFamily: fontsLoaded
-                            ? "FunnelDisplay_700Bold"
-                            : undefined,
-                    }}
-                >
+                <Heading headingLevel="h1" style={{ color: category.fgColor }}>
                     {title}
-                </Text>
+                </Heading>
             </View>
         </View>
     );
