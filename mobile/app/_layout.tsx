@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SheetProvider } from "react-native-actions-sheet";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 
 export default function Layout() {
     return (
@@ -22,6 +23,7 @@ export default function Layout() {
                             options={{ headerShown: false }}
                         />
                     </Stack>
+                    <Toast />
                 </SafeAreaView>
             </PermissionsProvider>
         </SheetProvider>

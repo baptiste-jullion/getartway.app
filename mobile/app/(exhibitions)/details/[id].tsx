@@ -1,27 +1,43 @@
-import { Icon } from "~/components/Icons/Icon";
-import { Button } from "~/components/UI/Button";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { TExhibition } from "@getartway/api/dist/dtos/exhibition.dto";
+import { ExhibitionDetailsHeader } from "~/components/Pages/ExhibitionDetails/Header";
+import { ExhibitionDetailsNavigation } from "~/components/Pages/ExhibitionDetails/Navigation";
+import client from "~/hooks/useApiClient";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 export default function ExhibitionDetails() {
-    const params = useLocalSearchParams();
-    const router = useRouter();
+    const { id } = useLocalSearchParams<{ id: string }>();
+
+    const [exhibition, setExhibition] = useState<TExhibition | null>(null);
+
+    useEffect(() => {
+        const fetchExhibitionDetails = async () => {
+            try {
+                const { data } = await client.api.exhibitions({ id }).get();
+                if (!data) {
+                    throw new Error("Exhibition not found");
+                }
+                setExhibition(data);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        fetchExhibitionDetails();
+    });
 
     return (
-        <View style={{ flex: 1, padding: 16 }}>
-            <Button
-                onPress={() =>
-                    router.canGoBack()
-                        ? router.back()
-                        : router.navigate("/(tabs)/explore")
-                }
-            >
-                <Icon
-                    name="Chevron"
-                    style={{ transform: [{ rotate: "180deg" }] }}
-                />
-            </Button>
-            <Text>{JSON.stringify(params, null, 2)}</Text>
+        <View style={{ flex: 1, position: "relative" }}>
+            {exhibition && (
+                <View>
+                    <ExhibitionDetailsNavigation />
+                    <ExhibitionDetailsHeader exhibition={exhibition} />
+                    <View style={{ padding: 16 }}>
+                        <Text>{exhibition.description}</Text>
+                        <Text>{JSON.stringify(exhibition)}</Text>
+                    </View>
+                </View>
+            )}
         </View>
     );
 }

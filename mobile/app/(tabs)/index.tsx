@@ -1,12 +1,7 @@
-import Constants from "expo-constants";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function IndexTab() {
-    return (
-        <View style={styles.container}>
-            <Text>{JSON.stringify(Constants.expoConfig?.extra)}</Text>
-        </View>
-    );
+    return <View style={styles.container}></View>;
 }
 
 const styles = StyleSheet.create({
