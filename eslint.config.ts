@@ -65,6 +65,8 @@ export default [
             eqeqeq: ["error"],
 
             "comma-dangle": ["warn", "always-multiline"],
+
+            "@typescript-eslint/no-unused-vars": "warn",
         },
     },
 
