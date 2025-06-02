@@ -2,6 +2,7 @@ import { TExhibition } from "@getartway/api/dist/dtos/exhibition.dto";
 import { Icon } from "~/components/Icons/Icon";
 import { ExhibitionDetailsCarousel } from "~/components/Pages/ExhibitionDetails/Carousel";
 import { ExhibitionDetailsHeader } from "~/components/Pages/ExhibitionDetails/Header";
+import { ExhibitionDetailsInfos } from "~/components/Pages/ExhibitionDetails/Infos";
 import { ExhibitionDetailsNavigation } from "~/components/Pages/ExhibitionDetails/Navigation";
 import { ExhibitionDetailsRate } from "~/components/Pages/ExhibitionDetails/Rate";
 import { TextButton } from "~/components/UI/TextButton";
@@ -9,7 +10,7 @@ import client from "~/hooks/useApiClient";
 import { alertNotImplemented } from "~/hooks/useNotImplemented";
 import { ArtwayColors } from "~/utils/constants";
 import { useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
 export default function ExhibitionDetails() {
@@ -40,6 +41,7 @@ export default function ExhibitionDetails() {
                     <ScrollView>
                         <View>
                             <ExhibitionDetailsHeader exhibition={exhibition} />
+                            <ExhibitionDetailsInfos exhibition={exhibition} />
                             <ExhibitionDetailsCarousel
                                 exhibition={exhibition}
                             />
