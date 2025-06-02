@@ -33,6 +33,8 @@ const ExhibitionDTO = t.Object({
     updatedAt: t.Date({
         examples: [new Date()],
     }),
+
+    medias: t.Array(t.String()),
 });
 
 export const ExhibitionReadDTO = ExhibitionDTO;

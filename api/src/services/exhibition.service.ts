@@ -46,6 +46,9 @@ export class ExhibitionService {
                     image: `${Bun.env.API_URL}/api/medias/${artist.artist.image}`,
                 };
             }),
+            medias: results.medias.map((media) => {
+                return `${Bun.env.API_URL}/api/medias/${media}`;
+            }),
         };
     }
 }
