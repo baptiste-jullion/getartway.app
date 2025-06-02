@@ -47,6 +47,10 @@ export const ExhibitionDetailsInfos: React.FC<ExhibitionDetailsInfosProps> = ({
                     </Text>
                 }
             </View>
+            <View>
+                <Heading headingLevel="h2">Adresse</Heading>
+                {<Text>{exhibition.location.address}</Text>}
+            </View>
         </View>
     );
 };
