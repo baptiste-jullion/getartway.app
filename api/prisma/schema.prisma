@@ -50,6 +50,7 @@ model Exhibition {
   categoryId  String             @db.Uuid
   artists     ArtistExhibition[]
   news        NewsExhibition[]
+  medias      String[] @db.Text
 
   createdAt DateTime @default(now()) @db.Timestamp()
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp()
