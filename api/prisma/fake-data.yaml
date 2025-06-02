@@ -57,6 +57,15 @@ exhibitions:
     startDate: 2024-10-18T00:00:00.000Z
     title: Le temps d'un rêve
     website: https://getartway.app
+    medias:
+      - 4fe87cfc-64a7-4238-9140-8c7de7da6eb0
+      - 5ad6a08f-319e-4eea-9ad8-90e1a64b215d
+      - 41f4493b-d4ed-4cc2-9f92-c53c45ffeb1b
+      - e269f839-a101-49b7-9e55-109986977041
+      - 56e34f1d-8920-441e-8e18-13db5721fa73
+      - 524e8d20-e055-4f5c-833e-684ac7969df9
+      - 8186401d-0cbc-4e09-bd3e-b2c7cdc22c85
+      - 465ac3ac-239a-49c9-ae6d-8caf3adf07af
   - id: 4830818e-1207-4ba1-bb79-3a6467ff48b4
     categoryId: 998b36f2-590b-4065-8872-060c83ad514a
     cover: b5e2bd6b-80f1-4f50-842f-dcd4a65cbd9d
@@ -69,6 +78,10 @@ exhibitions:
     startDate: 2024-11-09T00:00:00.000Z
     title: Jaume Plensa. Être là
     website: https://getartway.app
+    medias:
+      - 98909d35-c073-4d25-9d60-a0132c03beeb
+      - bc2fb935-c57f-42c8-b240-7d048a252e24
+      - 9e8a415a-dd73-4b5b-87e8-cd5924457de1
   - id: ca9073c6-c2d3-4215-a289-b8dfc6a0ade1
     categoryId: 4af7c9e2-c80b-4e48-9e72-b08b3a650e87
     cover: 6c0854fa-0d3c-4c95-ae7a-2df2000e2b98
@@ -81,6 +94,9 @@ exhibitions:
     startDate: null
     title: Planète(s) Découflé
     website: https://getartway.app
+    medias:
+      - 005e8f3f-9db4-4100-97a1-94d025c6a2c8
+      - e5937954-f22b-4591-8f6e-dc9a33a4f5e5
   - id: 2d2c9f0d-af91-49a1-953c-7215d19470da
     categoryId: 998b36f2-590b-4065-8872-060c83ad514a
     cover: efe29993-cb80-4d75-aae9-b0be44e35017
@@ -93,6 +109,10 @@ exhibitions:
     startDate: 2024-11-09T00:00:00.000Z
     title: Hors Format
     website: https://getartway.app
+    medias:
+      - a34630d7-a69e-45d6-9d30-34987564fb5b
+      - 4d723718-d91f-4fb4-80ea-01381279c486
+      - bd0dfe13-23d1-47a9-8e83-cb8e8629bdd3
   - id: 3fdc5370-63c7-4377-a296-dc1de1d43deb
     categoryId: cc6b529e-5cdb-48e5-936f-fa0c20fda95e
     cover: 15aed922-3056-40cd-b496-7a3cc39ec4f1
@@ -105,6 +125,11 @@ exhibitions:
     startDate: null
     title: "Grenoble Art' Up ! #2"
     website: https://getartway.app
+    medias:
+      - 3a03928c-7f4d-41f0-bfdf-c04a3509f4ba
+      - 9b58c678-f5f1-475f-a513-67a3097c2fd8
+      - 271561d8-e79f-47ca-8b1f-3b60034d1565
+      - 2fd5ad63-1e54-4a79-ba7e-5badb27ffc74
   - id: 8f84271c-40a4-4533-b6d8-5c86590b8a44
     categoryId: a94236b5-01ce-4644-b0c9-f638d86172a2
     cover: b1fbc414-ddeb-4cfe-993a-8f6ada3fe991
@@ -117,6 +142,10 @@ exhibitions:
     startDate: null
     title: Exposition collective Street Art Fest Grenoble
     website: https://getartway.app
+    medias:
+      - b5f34ba2-8672-4f0c-80d0-09c2bd83b45a
+      - fb2bfa11-0e21-418b-ba39-2698eae3b312
+      - 9b41e17b-0d64-4b6d-bd06-79549df1e41c
   - id: 72bbc6b7-92b1-4d4d-b08e-0a1a9ab99c41
     categoryId: a94236b5-01ce-4644-b0c9-f638d86172a2
     cover: a443d2ea-16fd-47fd-a46f-b238c15a81a4
@@ -129,6 +158,9 @@ exhibitions:
     startDate: null
     title: Palimpseste
     website: https://getartway.app
+    medias:
+      - ecffd12f-a34f-4936-8dac-2b5319b44051
+      - 74b9d78a-0e24-4f48-af6f-a89044e94d7e
   - id: cf1d8999-b0e5-464c-a0c7-4d1867452f07
     categoryId: 4af7c9e2-c80b-4e48-9e72-b08b3a650e87
     cover: b3023910-68f6-46d8-b33c-442fd4ea01bb
@@ -141,6 +173,11 @@ exhibitions:
     startDate: null
     title: Design-moi un jeu vidéo
     website: https://getartway.app
+    medias:
+      - 0e259147-a847-4179-a6ec-02024001556a
+      - c1f849e4-c48d-4a7e-99d7-409711e81da2
+      - 6a847311-00c1-4b2c-93a7-57521dee65d7
+      - 7e8d653e-383a-41c7-a2c6-de8879c9e90a
   - id: 4a38fbf4-689a-41d9-a85f-42759bbeaf84
     categoryId: 68e565d2-c1ee-48de-b670-6bb32b8323d6
     cover: 87ea65ff-dc24-49b7-96ab-4cc96ee677ee
@@ -153,6 +190,9 @@ exhibitions:
     startDate: 2024-06-29T00:00:00.000Z
     title: À travers champs
     website: https://getartway.app
+    medias:
+      - 0146c080-a774-4cc4-b6d3-202b84326069
+      - 8f5458b4-87ed-40af-b1c2-0b8a07cb34d8
   - id: 5fbef9df-5646-43c0-994c-35d36e3e069b
     categoryId: cc6b529e-5cdb-48e5-936f-fa0c20fda95e
     cover: dd89c011-0eac-4c73-9003-40aba75c5bb9
@@ -166,6 +206,8 @@ exhibitions:
     startDate: null
     title: Le Graph est voyageur
     website: https://getartway.app
+    medias:
+      - ad26fb43-4806-422a-b5f5-fefd3cd34793
   - id: 4bda0fe4-e341-4ea7-af23-21774ab7d218
     categoryId: 65709f68-6c84-4330-8b0a-21f43787d8f5
     cover: 4907a66c-3ac4-4fa6-ace4-8554304c5727
@@ -178,6 +220,10 @@ exhibitions:
     startDate: 2025-03-07T00:00:00.000Z
     title: Univers Programmés
     website: https://getartway.app
+    medias:
+      - 7e5458fc-c5f0-47e7-8f7b-878a23c231af
+      - 2124d8f3-1b19-49ea-a9dd-c3cc358d7cd2
+      - 5136cdaa-f9aa-41dd-8edf-aa12c3976172
   - id: 112cb14c-1140-4e85-bae3-c003f98d6789
     categoryId: a94236b5-01ce-4644-b0c9-f638d86172a2
     cover: 177007e9-f57c-4497-b393-0ef2cb697adc
@@ -190,6 +236,8 @@ exhibitions:
     startDate: 2025-05-01T00:00:00.000Z
     title: Street Art City
     website: https://getartway.app
+    medias:
+      - bda39040-6195-4214-94f9-3cdfac7a98ad
   - id: 4477785a-2c49-42d6-be8f-093e197ed7fe
     categoryId: 68e565d2-c1ee-48de-b670-6bb32b8323d6
     cover: 7940f89b-bf03-4c68-96ca-6d76636edba0
@@ -202,6 +250,8 @@ exhibitions:
     startDate: 2025-03-26T00:00:00.000Z
     title: Expo photo - Plantes sauvages du Massif central
     website: https://getartway.app
+    medias:
+      - 5e181ced-e6a9-4d17-841a-c5242a6ff180
   - id: f0bebfa0-c94a-47d8-8950-701579ce6353
     categoryId: 68e565d2-c1ee-48de-b670-6bb32b8323d6
     cover: a7e065be-1997-4395-91ef-305a46287e29
@@ -213,6 +263,10 @@ exhibitions:
     startDate: 2024-12-20T00:00:00.000Z
     title: Façonner le monde, visions d'ingénieurs photographes en montagne
     website: https://getartway.app
+    medias:
+      - c62cfe3b-5ba4-4f37-82a4-288c6651ac39
+      - 35347183-cd18-45e3-b737-f9e66ef19f4d
+      - 9deccb82-3489-4811-ba63-424f8fe8bc00
   - id: 72609114-5991-4ccf-b06a-2ea9e07b475b
     categoryId: 68e565d2-c1ee-48de-b670-6bb32b8323d6
     cover: 18209d31-6dfe-486b-ab89-df9754c24a47
@@ -224,6 +278,8 @@ exhibitions:
     startDate: 2025-04-11T00:00:00.000Z
     title: DES OISEAUX
     website: https://getartway.app
+    medias:
+      - b645ed62-8b7d-49b0-9591-0cdcaab0017e
 
 
 
