@@ -1,3 +1,4 @@
+import { ArtwayColors } from "~/utils/constants";
 import {
     StyleSheet,
     TouchableOpacity,
@@ -13,7 +14,8 @@ export const Button: React.FC<TouchableOpacityProps> = ({
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "white",
+        backgroundColor: ArtwayColors.WHITE,
+        color: ArtwayColors.BLACK,
         width: 48,
         height: 48,
         borderRadius: 50,

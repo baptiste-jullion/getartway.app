@@ -36,7 +36,7 @@ export const Tag: React.FC<TagProps> = ({ text, icon, style }) => {
                 style,
             ]}
         >
-            <Icon width={18} height={18} />
+            <Icon width={18} height={18} color={ArtwayColors.BLACK} />
             <Text>{text}</Text>
         </View>
     );

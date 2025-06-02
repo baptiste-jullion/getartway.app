@@ -1,6 +1,7 @@
 import { Icon } from "~/components/Icons/Icon";
 import { Button } from "~/components/UI/Button";
 import { alertNotImplemented } from "~/hooks/useNotImplemented";
+import { ArtwayColors } from "~/utils/constants";
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 
@@ -29,6 +30,7 @@ export const ExhibitionDetailsNavigation = () => {
                 }
             >
                 <Icon
+                    color={ArtwayColors.BLACK}
                     name="Chevron"
                     style={{ transform: [{ rotate: "180deg" }] }}
                 />
@@ -42,10 +44,10 @@ export const ExhibitionDetailsNavigation = () => {
                 }}
             >
                 <Button onPress={alertNotImplemented}>
-                    <Icon name="Send" />
+                    <Icon color={ArtwayColors.BLACK} name="Send" />
                 </Button>
                 <Button onPress={alertNotImplemented}>
-                    <Icon name="HeartOutlined" />
+                    <Icon color={ArtwayColors.BLACK} name="HeartOutlined" />
                 </Button>
             </View>
         </View>

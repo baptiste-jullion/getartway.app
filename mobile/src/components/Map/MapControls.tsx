@@ -1,9 +1,8 @@
-import LayersFilled from "~/components/Icons/LayersFilled";
-import MarkerFilled from "~/components/Icons/MarkerFilled";
-import NorthFilled from "~/components/Icons/NorthFilled";
+import { Icon } from "~/components/Icons/Icon";
 import { Button } from "~/components/UI/Button";
 import { useMapContext } from "~/contexts/MapContext";
 import { usePermissionsContext } from "~/contexts/PermissionsContext";
+import { ArtwayColors } from "~/utils/constants";
 import React, { useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
 
@@ -22,7 +21,8 @@ export const MapControls = () => {
     return (
         <View style={styles.actions}>
             <Button onPress={onRotateNorth}>
-                <NorthFilled
+                <Icon
+                    name="NorthFilled"
                     style={{
                         transform: [
                             {
@@ -30,11 +30,12 @@ export const MapControls = () => {
                             },
                         ],
                     }}
+                    color={ArtwayColors.BLACK}
                 />
             </Button>
             <View style={styles.layers}>
                 <Button onPress={() => setLayerVisible(!layerVisible)}>
-                    <LayersFilled />
+                    <Icon name="LayersFilled" color={ArtwayColors.BLACK} />
                 </Button>
                 {layerVisible && (
                     <View style={styles.layersRow}>
@@ -69,7 +70,7 @@ export const MapControls = () => {
                         });
                     }}
                 >
-                    <MarkerFilled />
+                    <Icon name="MarkerFilled" color={ArtwayColors.BLACK} />
                 </Button>
             )}
         </View>

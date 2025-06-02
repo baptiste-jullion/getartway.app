@@ -51,9 +51,15 @@ export default function TabLayout() {
                         title: tab.title,
                         tabBarIcon: ({ focused }) =>
                             focused ? (
-                                <Icon name={tab.icon[0]} />
+                                <Icon
+                                    color={ArtwayColors.BLACK}
+                                    name={tab.icon[0]}
+                                />
                             ) : (
-                                <Icon name={tab.icon[1]} />
+                                <Icon
+                                    color={ArtwayColors.BLACK}
+                                    name={tab.icon[1]}
+                                />
                             ),
                     }}
                 />
