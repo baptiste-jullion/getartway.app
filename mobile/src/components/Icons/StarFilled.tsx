@@ -1,11 +1,10 @@
-import { ArtwayColors } from "~/utils/constants";
 import * as React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
 const StarFilled = (props: SvgProps) => (
     <Svg width={24} height={24} viewBox="0 0 140 140" fill="none" {...props}>
         <Path
-            fill={ArtwayColors.BLACK}
+            fill="currentColor"
             d="m125.378 54.16-36.37-5.287L72.74 15.906A3.414 3.414 0 0 0 69.667 14c-1.31 0-2.501.738-3.073 1.906L50.327 48.873 13.956 54.16a3.474 3.474 0 0 0-2.787 2.334 3.41 3.41 0 0 0 .881 3.525l26.32 25.654-6.217 36.231a3.456 3.456 0 0 0 1.358 3.358c.595.429 1.31.667 2.024.667.548 0 1.096-.119 1.596-.405l32.536-17.102 32.536 17.102a3.424 3.424 0 0 0 3.62-.262c1.048-.762 1.596-2.072 1.358-3.358l-6.217-36.23 26.32-25.655c.928-.905 1.286-2.286.881-3.525a3.442 3.442 0 0 0-2.763-2.334h-.024Z"
         />
     </Svg>
