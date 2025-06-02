@@ -61,6 +61,7 @@ model Location {
   lat  Float
   lng  Float
   city String
+  address String
   geom Unsupported("geometry(Point, 4326)")?
 
   user       User?       @relation("UserLocation")

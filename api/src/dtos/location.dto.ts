@@ -5,6 +5,7 @@ const LocationDTO = t.Object({
     lat: t.Number({ format: "float", examples: [45.900002] }),
     lng: t.Number({ format: "float", examples: [6.1252859] }),
     city: t.String({ maxLength: 255, examples: ["Annecy"] }),
+    address: t.String(),
 });
 
 export const LocationReadDTO = LocationDTO;

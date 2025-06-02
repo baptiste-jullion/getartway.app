@@ -1,6 +1,6 @@
 import { TExhibition } from "#dtos/exhibition.dto";
 import { Prisma } from "#models";
-import { retrieveCityFromLocation } from "#utils";
+import { retrieveCityAndAddressFromLocation } from "#utils";
 
 const EnrichLocationMiddleware: Prisma.Middleware = async (params, next) => {
     if (
@@ -9,19 +9,24 @@ const EnrichLocationMiddleware: Prisma.Middleware = async (params, next) => {
     ) {
         if (params.action === "create" || params.action === "update") {
             const { lng, lat } = params.args.data;
-            params.args.data.city = await retrieveCityFromLocation({
+            const { city, address } = await retrieveCityAndAddressFromLocation({
                 lng,
                 lat,
             });
+            params.args.data.city = city;
+            params.args.data.address = address;
         } else {
             await Promise.all([
                 ...params.args.data.map(
                     async (location: TExhibition["location"]) => {
                         const { lng, lat } = location;
-                        location.city = await retrieveCityFromLocation({
-                            lng,
-                            lat,
-                        });
+                        const { city, address } =
+                            await retrieveCityAndAddressFromLocation({
+                                lng,
+                                lat,
+                            });
+                        location.city = city;
+                        location.address = address;
                     },
                 ),
             ]);
