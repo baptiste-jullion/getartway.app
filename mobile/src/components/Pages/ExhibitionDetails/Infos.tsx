@@ -1,6 +1,6 @@
 import { TExhibition } from "@getartway/api/dist/dtos/exhibition.dto";
 import { Heading } from "~/components/UI/Heading";
-import { Text, View } from "react-native";
+import { Linking, Text, TouchableOpacity, View } from "react-native";
 
 interface ExhibitionDetailsInfosProps {
     exhibition: TExhibition;
@@ -9,6 +9,13 @@ interface ExhibitionDetailsInfosProps {
 export const ExhibitionDetailsInfos: React.FC<ExhibitionDetailsInfosProps> = ({
     exhibition,
 }) => {
+    const openMap = () => {
+        const url = `geo:${exhibition.location.lat},${exhibition.location.lng}?q=${exhibition.location.lat},${exhibition.location.lng}(${exhibition.location.address})`;
+        Linking.openURL(url).catch((err) =>
+            console.error("An error occurred", err),
+        );
+    };
+
     return (
         <View style={{ padding: 16, gap: 16 }}>
             <View>
@@ -49,7 +56,9 @@ export const ExhibitionDetailsInfos: React.FC<ExhibitionDetailsInfosProps> = ({
             </View>
             <View>
                 <Heading headingLevel="h2">Adresse</Heading>
-                {<Text>{exhibition.location.address}</Text>}
+                <TouchableOpacity onPress={openMap}>
+                    {<Text>{exhibition.location.address}</Text>}
+                </TouchableOpacity>
             </View>
         </View>
     );

@@ -41,15 +41,16 @@ export default function ExhibitionDetails() {
                     <ScrollView>
                         <View>
                             <ExhibitionDetailsHeader exhibition={exhibition} />
+                            {exhibition.description && (
+                                <View style={{ padding: 16 }}>
+                                    <Text>{exhibition.description}</Text>
+                                </View>
+                            )}
                             <ExhibitionDetailsInfos exhibition={exhibition} />
                             <ExhibitionDetailsCarousel
                                 exhibition={exhibition}
                             />
                             <ExhibitionDetailsRate />
-                            <View style={{ padding: 16 }}>
-                                <Text>{exhibition.description}</Text>
-                                <Text>{JSON.stringify(exhibition)}</Text>
-                            </View>
                         </View>
                     </ScrollView>
                     <TextButton
