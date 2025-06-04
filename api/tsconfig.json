@@ -25,7 +25,10 @@
       ],
       "#index": [
         "src/index"
-      ]
+      ],
+      "#plugins/*": [
+        "src/plugins/*"
+      ],
     },
     "types": [
       "bun-types"

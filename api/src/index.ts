@@ -1,26 +1,13 @@
-import swagger from "@elysiajs/swagger";
 import { ArtistController } from "#controllers/artist.controller";
 import { CategoryController } from "#controllers/category.controller";
 import { ExhibitionController } from "#controllers/exhibition.controller";
+import { MediaController } from "#controllers/media.controller";
 import { UserController } from "#controllers/user.controller";
+import { SwaggerPlugin } from "#plugins/swagger.plugin";
 import { Elysia } from "elysia";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 
 const app = new Elysia()
-    .use(
-        swagger({
-            path: "/docs",
-            documentation: {
-                info: {
-                    title: "Artway API Documentation",
-                    version: "ALPHA",
-                    description:
-                        "API documentation for <a href='https://getartway.app'>Artway</a>. Source code is available on <a href='https://github.com/baptiste-jullion/getartway.app'>GitHub</a>.",
-                },
-            },
-        }),
-    )
+    .use(SwaggerPlugin)
     .get("/", ({ redirect }) => redirect("/docs"), {
         detail: {
             hide: true,
@@ -32,28 +19,7 @@ const app = new Elysia()
             .use(ExhibitionController)
             .use(CategoryController)
             .use(ArtistController)
-            .group("/medias", (app) =>
-                app.get("/:id/", async ({ params, set }) => {
-                    const { id } = params;
-
-                    try {
-                        const filePath = join(
-                            process.cwd(),
-                            "medias",
-                            `${id}.webp`,
-                        );
-                        const file = await readFile(filePath);
-
-                        set.headers["Content-Type"] = "image/webp";
-                        return new Response(file);
-                    } catch (e) {
-                        set.status = 404;
-                        return {
-                            error: "File not found",
-                        };
-                    }
-                }),
-            ),
+            .use(MediaController),
     )
     .listen({
         port: 3000,
