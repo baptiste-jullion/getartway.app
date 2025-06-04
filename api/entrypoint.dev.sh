@@ -1,4 +1,4 @@
 #!/bin/sh
 bunx prisma migrate deploy
-bun prisma/seed.ts
+bunx prisma db seed
 bun dev
