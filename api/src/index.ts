@@ -26,6 +26,8 @@ const app = new Elysia()
         hostname: "0.0.0.0",
     });
 
-console.log(`API is running on container @ ${app.server?.url}`);
+console.log(
+    `API is running on container @ ${app.server?.url}.\nRunning on host @ ${Bun.env.API_URL}.`,
+);
 
 export type App = typeof app;
