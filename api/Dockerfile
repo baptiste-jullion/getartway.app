@@ -5,3 +5,5 @@ WORKDIR /app
 COPY . .
 
 RUN bun install
+
+RUN chmod +x ./entrypoint.*.sh
