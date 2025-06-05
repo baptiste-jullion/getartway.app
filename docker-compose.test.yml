@@ -10,6 +10,8 @@ services:
        - .:/app
      working_dir: /app
      command: bun test
+     environment:
+       DATABASE_URL: postgresql://artway:artway@db:5432/artway-${NODE_ENV}?schema=public
      depends_on:
        db:
          condition: service_healthy

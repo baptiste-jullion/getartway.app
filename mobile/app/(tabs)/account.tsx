@@ -1,11 +1,5 @@
-import { Text, View } from "react-native";
+import NotImplemented from "~/components/NotImplemented";
 
 export default function AccountTab() {
-    return (
-        <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-            <Text>Tab [Account]</Text>
-        </View>
-    );
+    return <NotImplemented />;
 }

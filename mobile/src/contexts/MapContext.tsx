@@ -32,15 +32,15 @@ interface MapContextType {
 }
 
 const Layers = {
-    Satellite: {
-        url: "mapbox://styles/mapbox/satellite-streets-v12",
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        preview: require("~/assets/map-layers/satellite.png"),
-    },
     Street: {
         url: "mapbox://styles/mapbox/standard",
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         preview: require("~/assets/map-layers/street.png"),
+    },
+    Satellite: {
+        url: "mapbox://styles/mapbox/satellite-streets-v12",
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        preview: require("~/assets/map-layers/satellite.png"),
     },
     Night: {
         url: "mapbox://styles/mapbox/navigation-preview-night-v4",
@@ -65,7 +65,7 @@ export const MapProvider = ({ children }: { children: ReactNode }) => {
         useState<MapContextType["userLocation"]>(null);
 
     const [layerURL, setLayerURL] = useState<MapContextType["layerURL"]>(
-        Layers.Satellite.url,
+        Layers.Street.url,
     );
 
     const setCamera: Camera["setCamera"] = (camera) => {
