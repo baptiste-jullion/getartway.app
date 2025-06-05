@@ -11,15 +11,16 @@ interface ExhibitionAnnotationProps {
 export const ExhibitionAnnotation = ({
     exhibition,
 }: ExhibitionAnnotationProps) => {
-    const imageUri = exhibition.cover;
-    const [imageReady, setImageReady] = useState(false);
+    const [renderKey, setRenderKey] = useState(0);
 
     useEffect(() => {
-        Image.prefetch(imageUri).then(() => setImageReady(true));
-    }, [imageUri]);
+        setRenderKey(renderKey + 1);
+    }, []);
+
     return (
         <MapboxGL.PointAnnotation
             id={exhibition.id}
+            key={`${exhibition.id}-${renderKey}`}
             coordinate={[exhibition.location.lng, exhibition.location.lat]}
             onSelected={() => {
                 SheetManager.show("exhibition-sheet", {
@@ -35,13 +36,10 @@ export const ExhibitionAnnotation = ({
                     justifyContent: "center",
                 }}
             >
-                {imageReady && (
-                    <Image
-                        key={exhibition.id}
-                        source={{ uri: imageUri }}
-                        style={styles.imageMarker}
-                    />
-                )}
+                <Image
+                    source={{ uri: exhibition.cover }}
+                    style={styles.imageMarker}
+                />
             </View>
         </MapboxGL.PointAnnotation>
     );
