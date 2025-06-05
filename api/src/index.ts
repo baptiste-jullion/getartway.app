@@ -13,6 +13,7 @@ const app = new Elysia()
             hide: true,
         },
     })
+    .get("/health", () => "OK")
     .group("/api", (app) =>
         app
             .use(UserController)

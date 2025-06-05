@@ -2,10 +2,8 @@ name: Deploy API
 
 on:
   push:
-    paths:
-      - 'api/**'
-      - 'docker*.yml'
-      - '**/Dockerfile'
+    branches: [main]
+  pull_request:
     branches: [main]
 
 jobs:

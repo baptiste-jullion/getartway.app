@@ -1,5 +1,19 @@
 services:
-  # api:
-  #   entrypoint: ./entrypoint.test.sh
-  # website:
-  #   entrypoint: ./entrypoint.test.sh
+   api:
+     entrypoint: ./entrypoint.test.sh
+   website:
+     entrypoint: ./entrypoint.test.sh
+   test:
+     container_name: getartway-tests
+     image: oven/bun:1.1
+     volumes:
+       - .:/app
+     working_dir: /app
+     command: bun test
+     depends_on:
+       db:
+         condition: service_healthy
+       api:
+         condition: service_healthy
+       website:
+         condition: service_started

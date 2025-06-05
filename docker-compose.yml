@@ -40,6 +40,11 @@ services:
         condition: service_healthy
     networks:
       - default-${NODE_ENV}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   website:
     container_name: getartway-website-${NODE_ENV}
