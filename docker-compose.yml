@@ -54,10 +54,6 @@ services:
     ports:
       - "${WEBSITE_PORT}:3000"
 
-  test:
-    environment:
-      <<: *shared-env-vars
-
 
 volumes:
   pg-data-development:
