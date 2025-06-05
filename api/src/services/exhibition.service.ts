@@ -1,13 +1,58 @@
 import { db } from "#database";
+import { TExhibitionFilters } from "#dtos/exhibition.dto";
 
 export class ExhibitionService {
-    static async list() {
+    static async list(filters: TExhibitionFilters) {
         const results = await db.exhibition.findMany({
             select: {
                 id: true,
                 title: true,
                 cover: true,
                 location: true,
+            },
+            where: {
+                AND: [
+                    {
+                        OR: [
+                            {
+                                title: {
+                                    contains: filters.keyword ?? "",
+                                    mode: "insensitive",
+                                },
+                            },
+                            {
+                                description: {
+                                    contains: filters.keyword ?? "",
+                                    mode: "insensitive",
+                                },
+                            },
+                        ],
+                    },
+                    filters.city
+                        ? {
+                              location: {
+                                  city: {
+                                      equals: filters.city,
+                                      mode: "insensitive",
+                                  },
+                              },
+                          }
+                        : {},
+                    filters.price !== undefined
+                        ? {
+                              price: {
+                                  lte: filters.price,
+                              },
+                          }
+                        : {},
+                    filters.category
+                        ? {
+                              category: {
+                                  icon: filters.category,
+                              },
+                          }
+                        : {},
+                ],
             },
         });
 

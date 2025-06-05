@@ -1,5 +1,5 @@
 import { ArtistReadDTO } from "#dtos/artist.dto";
-import { CategoryReadDTO } from "#dtos/category.dto";
+import { CategoryEnum, CategoryReadDTO } from "#dtos/category.dto";
 import { LocationReadDTO } from "#dtos/location.dto";
 import { t } from "elysia";
 
@@ -49,3 +49,12 @@ export const ExhibitionListDTO = t.Pick(ExhibitionDTO, [
 ]);
 
 export type TExhibitionList = typeof ExhibitionListDTO.static;
+
+export const ExhibitionFiltersDTO = t.Object({
+    keyword: t.Optional(t.String()),
+    city: t.Optional(t.String()),
+    category: t.Optional(CategoryEnum),
+    price: t.Optional(t.Number()),
+});
+
+export type TExhibitionFilters = typeof ExhibitionFiltersDTO.static;
