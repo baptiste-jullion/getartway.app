@@ -53,7 +53,9 @@ export type TExhibitionList = typeof ExhibitionListDTO.static;
 export const ExhibitionFiltersDTO = t.Object({
     keyword: t.Optional(t.String()),
     city: t.Optional(t.String()),
-    category: t.Optional(CategoryEnum),
+    category: t.Optional(
+        t.Union([t.Undefined(), t.Null(), t.Literal(""), CategoryEnum]),
+    ),
     price: t.Optional(t.Number()),
 });
 
