@@ -31,6 +31,7 @@ jobs:
           ssh -p 12018 ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
             cd /home/sites/getartway.app
             git pull origin main
-            /home/baptiste/.bun/bin/bun docker:deploy:stop
-            /home/baptiste/.bun/bin/bun docker:deploy:start
+            source ~/.bashrc
+            bun docker:deploy:stop
+            bun docker:deploy:start
           EOF
