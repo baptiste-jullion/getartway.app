@@ -2,8 +2,10 @@ FROM oven/bun:1.1
 
 WORKDIR /app
 
-COPY . .
+COPY package.json .
 
 RUN bun install
+
+COPY . .
 
 RUN chmod +x ./entrypoint.*.sh

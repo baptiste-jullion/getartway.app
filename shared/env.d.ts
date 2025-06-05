@@ -1,15 +1,16 @@
 declare module "bun" {
     interface Env {
-        ENV: "development" | "production";
-        DB_NAME: string;
-        DB_USER: string;
-        DB_PASSWORD: string;
-        API_PROTOCOL: "http" | "https";
-        API_HOST: string;
+        NODE_ENV: "development" | "production" | "test";
+
+        DB_PORT: number;
+        API_PORT: number;
+        WEBSITE_PORT: number;
+
         API_URL: string;
-        MAPBOX_PUBLIC_KEY: string;
-        MAPBOX_SECRET_KEY: string;
-        DB_PORT_ON_HOST: number;
-        API_PORT_ON_HOST: number;
+
+        MAPBOX_PUBLIC_KEY: `pk.${string}`;
+        MAPBOX_SECRET_KEY: `sk.${string}`;
+
+        EAS_TOKEN: string;
     }
 }

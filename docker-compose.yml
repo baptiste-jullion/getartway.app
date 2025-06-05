@@ -1,42 +1,61 @@
+x-env-vars: &shared-env-vars
+  DATABASE_URL: postgresql://artway:artway@db:5432/artway-${NODE_ENV}?schema=public
+
 services:
   db:
+    container_name: getartway-db-${NODE_ENV}
     image: postgis/postgis:15-3.3
-    container_name: getartway-db-${ENV}
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${DB_NAME}-${ENV}
-      POSTGRES_USER: ${DB_USER}-${ENV}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}-${ENV}
+      POSTGRES_DB: artway-${NODE_ENV}
+      POSTGRES_USER: artway
+      POSTGRES_PASSWORD: artway
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pg-data-${NODE_ENV}:/var/lib/postgresql/data
     ports:
-      - "${DB_PORT_ON_HOST}:5432"
+      - "${DB_PORT}:5432"
+    networks:
+      - default-${NODE_ENV}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U artway -d artway-${NODE_ENV}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 
   api:
-    container_name: getartway-api-${ENV}
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    working_dir: /app
+    container_name: getartway-api-${NODE_ENV}
+    restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql://${DB_USER}-${ENV}:${DB_PASSWORD}-${ENV}@db:5432/${DB_NAME}-${ENV}?schema=public
+      <<: *shared-env-vars
       MAPBOX_PUBLIC_KEY: ${MAPBOX_PUBLIC_KEY}
       MAPBOX_SECRET_KEY: ${MAPBOX_SECRET_KEY}
       API_URL: ${API_URL}
+    build:
+      context: ./api
     ports:
-      - "${API_PORT_ON_HOST}:3000"
+      - "${API_PORT}:3000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    networks:
+      - default-${NODE_ENV}
 
   website:
-    container_name: getartway-website-${ENV}
+    container_name: getartway-website-${NODE_ENV}
+    restart: unless-stopped
     build:
       context: ./website
-      dockerfile: Dockerfile
-    working_dir: /app
     ports:
-      - "${WEBSITE_PORT_ON_HOST}:3000"
+      - "${WEBSITE_PORT}:3000"
+
 
 volumes:
-  pgdata:
-    name: getartway-pgdata-${ENV}
+  pg-data-development:
+  pg-data-production:
+  pg-data-test:
+
+networks:
+  default-development:
+  default-production:
+  default-test:

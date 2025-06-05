@@ -8,8 +8,10 @@
     "mobile"
   ],
   "scripts": {
-    "docker:dev": "docker compose --env-file .env up --build",
-    "docker:deploy": "docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up --build -d"
+    "docker:dev:start": "NODE_ENV=development docker compose --env-file .env up --build",
+    "docker:dev:stop": "NODE_ENV=development docker compose down",
+    "docker:deploy:start": "NODE_ENV=production docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
+    "docker:deploy:stop": "NODE_ENV=production docker compose down"
   },
   "devDependencies": {
     "@eslint/js": "^9.26.0",

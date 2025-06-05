@@ -1,8 +1,13 @@
 {
   "cSpell.words": [
     "Artway",
+    "bunx",
     "dtos",
     "Elysia",
-    "MAPBOX"
+    "getartway",
+    "healthcheck",
+    "isready",
+    "MAPBOX",
+    "postgis"
   ]
 }
