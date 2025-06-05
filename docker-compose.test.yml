@@ -17,3 +17,5 @@ services:
          condition: service_healthy
        website:
          condition: service_started
+     networks:
+       - default-${NODE_ENV}
