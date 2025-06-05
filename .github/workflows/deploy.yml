@@ -29,9 +29,9 @@ jobs:
       - name: Deploy via SSH
         run: |
           ssh -p 12018 ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
+            export PATH="$HOME/.bun/bin:$PATH"
             cd /home/sites/getartway.app
             git pull origin main
-            source ~/.bashrc
             bun docker:deploy:stop
             bun docker:deploy:start
           EOF
