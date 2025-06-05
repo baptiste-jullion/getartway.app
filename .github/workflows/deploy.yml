@@ -1,11 +1,9 @@
-name: Deploy Website
+name: Deploy API
 
 on:
   push:
-    paths:
-      - 'website/**'
-      - 'docker*.yml'
-      - '**/Dockerfile'
+    branches: [main]
+  pull_request:
     branches: [main]
 
 jobs:
@@ -16,17 +14,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p 12018 -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+
       - name: Deploy via SSH
         run: |
           ssh -p 12018 ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
             cd /home/sites/getartway.app
             git pull origin main
-            docker compose down website
-            docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up website --build -d
+            bun docker:deploy:stop
+            bun docker:deploy:start
           EOF

@@ -13,6 +13,7 @@ const app = new Elysia()
             hide: true,
         },
     })
+    .get("/health", () => "OK")
     .group("/api", (app) =>
         app
             .use(UserController)
@@ -31,3 +32,5 @@ console.log(
 );
 
 export type App = typeof app;
+
+export { db } from "#database";

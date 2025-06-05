@@ -8,11 +8,15 @@
     "mobile"
   ],
   "scripts": {
-    "docker:dev": "docker compose --env-file .env up --build",
-    "docker:deploy": "docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up --build -d"
+    "docker:dev:start": "NODE_ENV=development docker compose --env-file .env up --build",
+    "docker:dev:stop": "NODE_ENV=development docker compose down",
+    "docker:deploy:start": "NODE_ENV=production docker compose --env-file .env.prod -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
+    "docker:deploy:stop": "NODE_ENV=production docker compose down",
+    "docker:test:start": "NODE_ENV=test docker compose --env-file .env.test -f docker-compose.yml -f docker-compose.test.yml up --build --abort-on-container-exit"
   },
   "devDependencies": {
     "@eslint/js": "^9.26.0",
+    "@faker-js/faker": "^9.8.0",
     "@stylistic/eslint-plugin-ts": "^4.2.0",
     "@types/bun": "latest",
     "eslint": "^9.26.0",
@@ -20,6 +24,7 @@
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-vue": "^10.1.0",
+    "fishery": "^2.3.1",
     "globals": "^16.1.0",
     "jiti": "^2.4.2",
     "typescript-eslint": "^8.32.1"
@@ -28,6 +33,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@elysiajs/eden": "^1.3.2",
     "elysia": "^1.3.1"
   }
 }
