@@ -14,7 +14,12 @@ export const ExhibitionAnnotation = ({
     const [renderKey, setRenderKey] = useState(0);
 
     useEffect(() => {
-        setRenderKey(renderKey + 1);
+        setTimeout(() => {
+            setRenderKey(renderKey + 1);
+            setTimeout(() => {
+                setRenderKey(renderKey + 1);
+            }, 1500);
+        }, 1500);
     }, []);
 
     return (
