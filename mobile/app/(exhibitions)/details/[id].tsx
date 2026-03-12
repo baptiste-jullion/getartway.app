@@ -11,7 +11,9 @@ import { alertNotImplemented } from "~/hooks/useNotImplemented";
 import { ArtwayColors } from "~/utils/constants";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native
+
+// trigger build
 
 export default function ExhibitionDetails() {
     const { id } = useLocalSearchParams<{ id: string }>();
