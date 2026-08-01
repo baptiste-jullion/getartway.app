@@ -12,8 +12,6 @@ services:
       POSTGRES_PASSWORD: artway
     volumes:
       - pg-data-${NODE_ENV}:/var/lib/postgresql/data
-    ports:
-      - "${DB_PORT}:5432"
     networks:
       - default-${NODE_ENV}
     healthcheck:
@@ -33,8 +31,6 @@ services:
       API_URL: ${API_URL}
     build:
       context: ./api
-    ports:
-      - "${API_PORT}:3000"
     depends_on:
       db:
         condition: service_healthy
@@ -51,8 +47,6 @@ services:
     restart: unless-stopped
     build:
       context: ./website
-    ports:
-      - "${WEBSITE_PORT}:3000"
 
 
 volumes:
